@@ -30,6 +30,12 @@ app.use(morgan(':method :url :status :user-agent - [:date[clf]] :response-time m
 app.use('/images', express.static(path.join(__dirname, './src/uploads')));
 
 
+app.get('/test', (req, res) => {
+    const response = {
+      message: 'Hello, User!'
+    };
+    res.json(response);
+  });
 
 app.use('/api', routesApi);
 app.use(routesWeb);
