@@ -16,7 +16,8 @@ const models = require('../../../managers/models');
 
 // This would be your token blacklist storage
 const tokenBlacklist = new Set();
-
+const options = { day: '2-digit', month: 'short', year: 'numeric' };
+const options2 = { timeZone: 'UTC', };
 
 
 
@@ -183,6 +184,88 @@ module.exports = {
             console.log(err.message);
             res.status(400).send(err.message);
           }
+    },
+
+  // Vehicle Stats
+      vehicleStats : async (req, res) => {
+        try {
+            const vehicle = await models.BranchModel.Vehicle.find()
+            .populate('deliveryman_id');
+        
+            const user = req.user;
+            if (!user) {
+                return res.redirect('/admin/auth/login');
+            }
+            res.render('admin/vehicle/addStats', { Title: "Vehicle list", user, vehicle , error: "DeliveryMan List" })
+        } catch (err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+        }
+      },
+
+      postStats : async (req, res) => {
+      try{
+        const {vehicle_id, order_id, fuel_capacity, fuel_dispensed, fuel_available, dispensed_datetime} = req.body;
+          console.log(req.body)
+        if (!vehicle_id || !order_id || !fuel_capacity  || !fuel_dispensed || !fuel_available  || !dispensed_datetime ) {
+            throw new Error('Required fields are missing.');
+        }
+
+        const statsData = {
+            vehicle_id, 
+            order_id, 
+            fuel_capacity,
+            fuel_dispensed,
+            fuel_available,
+            dispensed_datetime
+        };
+
+        const vehicleStats = new models.BranchModel.VehicleStats(statsData);
+        await vehicleStats.save();
+        console.log("Vehicle Stats Added successfully");
+        res.redirect('/admin/vehicle/list');
+      } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+      }
+      },
+
+        getOrders : async ( req, res ) =>{
+          try {
+              const vehicle_id = req.query.vehicle_id;
+              const vehicle = await models.BranchModel.Vehicle.find({ _id : vehicle_id }).populate('deliveryman_id');
+
+              const deliveryMan = vehicle[0].deliveryman_id._id
+
+              const orders =  await models.BranchModel.Order.find({ 
+                delivery_id : deliveryMan ,
+                status : "Out for delivery"
+              }).populate('user_id');
+
+              res.json(orders);
+          } catch (error) {
+              console.error(error);
+              res.status(500).json({ error: 'Internal Server Error' });
+          }
+      },
+
+  // Detailed Stats
+      detailedStats :async (req, res) => {
+        try {
+            const vehicleId = req.params.vehicleId;
+            const vehicleStats = await models.BranchModel.VehicleStats.find({vehicle : vehicleId})
+                .populate('vehicle')
+                .populate('order_id')
+        
+            const user = req.user;
+            if (!user) {
+                return res.redirect('/admin/auth/login');
+            }
+            res.render('admin/vehicle/detailStats', { Title: "Vehicle list", user, vehicleStats, options,  options2 , error: "DeliveryMan List" })
+        } catch (err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+        }
     },
 };
 

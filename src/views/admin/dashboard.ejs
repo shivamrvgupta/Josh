@@ -116,48 +116,8 @@
                             </div>
                         </div>
 
-                        <!-- <div class="col-xl-6 d-flex ">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header border-0 pb-1">
-                                    <div class="card-header-title">
-                                        <h4>Product</h4>
-                                    </div>
-                                <div class="upper-card-body d-flex">
-                                <% products.forEach(function(item){ %>
-                                    <a href="/admin/product/detail/<%= item._id %>">
-                                        <div class="product-card-item">
-                                            <div class="card-body">
-                                            <img src="/images/<%= item.image%>" style="width: 100px; height: 100px; border-radius: 5px;" class="p-2  " >
-                                            <br>
-                                            <h4 class="product-card-title"><%= item.name%></h4>
-                                                <p class="product-card-text">₹<%= item.price%></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                <% }) %>
-                                </div>
-                            </div>
-                        </div>
-                        </div> -->
-                        <!-- chart caard section End -->
-
-                        <!-- Earning chart star-->
-                            <!-- <div class="col-xl-7">
-                                <div class="card o-hidden">
-                                    <div class="card-header border-0 pb-1">
-                                        <div class="card-header-title">
-                                            <h4>Revenue Report</h4>
-                                        </div>
-                                    </div>
-                                    <div class="card-body p-0">
-                                        <div id="report-chart"></div>
-                                    </div>
-                                </div>
-                            </div> -->
-                        <!-- Earning chart  end -->
-
                         <!-- Sales / Purchase chart start -->
-                            <div class="col-xl-8 col-lg-12 col-md-6">
+                            <div class="col-xl-7 col-lg-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header border-0 pb-1">
                                         <div class="card-header-title">
@@ -171,6 +131,79 @@
                             </div>
                         <!-- Sales / Purchase chart end -->
                        
+                        <div class="col-xl-5">
+                            <div class="card o-hidden card-hover">
+                                <div class="card-header card-header-top card-header--2">
+                                    <div class="card-header-title">
+                                        <h4>Vehicle Stats</h4>
+                                    </div>
+
+                                    <div class="best-selling-box">
+                                        <span>Sort By:</span>
+                                        <div class="dropdown">
+                                            <button class="btn p-0 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="true" data-bs-original-title="" title="">Today</button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="#" data-bs-original-title="" title="">Yesterday</a></li>
+                                                <li><a class="dropdown-item" href="#" data-bs-original-title="" title="">Day before yesterday</a></li> 
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body p-0">
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="best-selling-table table border-0">
+                                                <tbody>
+                                                    <% if (vehicle != '') { %>        
+                                                        <% vehicle.forEach((row, index) => { %> 
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="best-product-box">
+                                                                        <div class="product-name">
+                                                                            <h6>Vehicle Number</h6>
+                                                                            <h5>
+                                                                                <a href="/admin/vehicle/vehicle-stats/<%= row._id %>">
+                                                                                    <%= row.vehicle_number %>
+                                                                                </a>
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                                <td>
+                                                                    <div class="product-detail-box">
+                                                                        <h6>Branch</h6>
+                                                                        <h5><%= row.branch_id.name %></h5>
+                                                                    </div>
+                                                                </td>
+                                                                
+                                                                <td>
+                                                                    <div class="product-detail-box">
+                                                                        <h6>Delivery Man</h6>
+                                                                        <h5><%= row.deliveryman_id.fname %> <%= row.deliveryman_id.lname %></h5>
+                                                                    </div>
+                                                                </td>
+
+                                                            </tr>
+                                                        <% }) %>      
+                                                    <% } else { %>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="product-detail-box">
+                                                                    <h6>No Data found</h6>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <% } %>      
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Container-fluid Ends-->
@@ -186,7 +219,7 @@
                 // sales purchase chart
                 var options = {
                     series: [{
-                        data: [21, 22, 10, 28, 16, 21, 13, 30, 12, 20]
+                        data: [121295, 121295, 123420, 212312, 212925, 314112,111925, 1314112, 1241230, 1161895.6 , 211240 , 211223]
                     }],
                     chart: {
                         height: 300,
@@ -206,7 +239,7 @@
                         show: false
                     },
                     xaxis: {
-                        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                        categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct','Nov','Dec'],
                         labels: {
                             style: {
                                 colors: ['#0da487', '#2483e2', '#3d3d3d'],

@@ -1,0 +1,99 @@
+<%- include('../../partials/main', { pageTitle: 'Add New Vehicles' }) %>
+
+<!-- Container-fluid starts-->
+    <div class="page-body">
+        <!-- New User start -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-12 m-auto">
+                            <div class="card">
+                                <div class="card-body title-header option-title">
+                                    <h5>Vehicle Stats (Demo)</h5>
+                                </div>
+                            </div>
+                            
+                            
+                        <!-- Sales / Purchase chart start -->
+                        <div class="col-12">
+                            <div class="card o-hidden">
+                                <div class="card-header border-0 pb-1">
+                                    <div class="card-header-title">
+                                        <h4><%= vehicleStats[0].vehicle.vehicle_number %></h4>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div id="sales-purchase-return-cart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sales / Purchase chart end -->
+                            
+                        </div>
+
+                        <!-- Booking history start-->
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-0 pb-1">
+                                    <div class="card-header-title">
+                                        <h4>Dispensed History</h4>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="user-table list-table table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order Id</th>
+                                                        <th>fuel_dispensed</th>
+                                                        <th>fuel_available</th>
+                                                        <th>fuel_capacity</th>
+                                                        <th>dispensed_datetime</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% if (vehicleStats != '') { %>        
+                                                        <% vehicleStats.forEach((row, index) => { %> 
+                                                            <tr>
+                                                                <td><%= row.order_id.order_id %></td>
+                                                                <td><%= row.fuel_dispensed %></td>
+                                                                <td><%= row.fuel_available %></td>
+                                                                <td><%= row.fuel_capacity %></td>
+                                                                <td><%= row.dispensed_datetime.toLocaleDateString('en-UK', options) %> <%= row.dispensed_datetime.toLocaleTimeString('en-UK', options2) %></td>
+
+                                                            </tr>
+                                                        <% }) %>      
+                                                    <% } else { %>    
+                                                        <tr>
+                                                            <td>No Data Found</td>
+                                                        </tr>
+                                                    <% } %>      
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Booking history  end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- New User End -->
+
+        <!-- footer start -->
+            <%- include('../../partials/footer')%>
+        <!-- footer end -->
+    </div>
+<!-- Container-fluid end -->
+<script src="/public/js/chart/apex-chart/apex-chart1.js"></script>
+<script src="/public/js/chart/apex-chart/moment.min.js"></script>
+<script src="/public/js/chart/apex-chart/apex-chart.js"></script>
+<script src="/public/js/chart/apex-chart/stock-prices.js"></script>
+<script src="/public/js/chart/apex-chart/chart-custom.js"></script>
+
+<%- include('../../partials/end')%>

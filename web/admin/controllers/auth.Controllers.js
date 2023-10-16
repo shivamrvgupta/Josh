@@ -96,6 +96,10 @@ module.exports = {
 
       const addOn = await models.ProductModel.AddOn.find();
 
+      const vehicle = await models.BranchModel.Vehicle.find()
+      .populate('branch_id')
+      .populate('deliveryman_id');
+
       const orderDetail = await models.BranchModel.Order.aggregate([
         {
           $match: {
@@ -144,7 +148,7 @@ module.exports = {
 
 
       error = "You are successfully logged in"
-      res.render('admin/dashboard', { options, allOrders, allProducts, totalRevenue, totalQuantity, allCustomers , products, addOn ,user: user, error ,productQuantities , productQuantities: JSON.stringify({ quantities })})
+      res.render('admin/dashboard', { options, vehicle, allOrders, allProducts, totalRevenue, totalQuantity, allCustomers , products, addOn ,user: user, error ,productQuantities , productQuantities: JSON.stringify({ quantities })})
     },
 
   // User Logout API
