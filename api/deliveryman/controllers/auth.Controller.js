@@ -53,7 +53,7 @@ module.exports = {
 
     try {
       // Check if the mobile number exists in the database
-      const userExists = await models.UserModel.User.findOne({ phone: loginData.phone_number });
+      const userExists = await models.UserModel.DeliveryMan.findOne({ phone: loginData.phone_number });
 
       if (!userExists) {
         const otp = OtpHelper.generateOTP();
@@ -157,7 +157,7 @@ module.exports = {
       // Check if the phone number and OTP match the decoded values
       if (decoded.phone === verifyData.phone_number && Number(decoded.otp) === verifyData.otp) {
         // OTP is correct, check if the user's address is confirmed or not
-        const user = await models.UserModel.User.findOne({ phone: verifyData.phone_number });
+        const user = await models.UserModel.DeliveryMan.findOne({ phone: verifyData.phone_number });
 
         if (!user) {
           // Phone number not found, redirect the user to the registration page
@@ -166,21 +166,14 @@ module.exports = {
           // res.redirect('/register');
         }
         const responseData = {
-          profile: user.profile,
-          first_name: user.first_name,
-          last_name: user.last_name,
+          profile: user.deliveryman_image,
+          first_name: user.fname,
+          last_name: user.lname,
           email: user.email,
           phone_number: user.phone,
-          company: user.company,
-          is_privilaged: user.is_privilaged,
+          branch: user.branch,
         };
 
-        const isAddressConfirmed = await models.UserModel.User.checkIfAddressConfirmed(verifyData.phone_number);
-        if (!isAddressConfirmed) {
-          const token = AuthMiddleware.generateAccessToken(user)
-          console.log("Token ---- ",token)
-          return res.status(StatusCodesConstants.SUCCESS).json({ status: true, status_code: StatusCodesConstants.SUCCESS, message: 'Address Not Confirmed', data: { responseData, token} });
-        }
         // Address confirmed, log the user in (you can implement login logic here) and redirect to the dashboard
 
         const token = AuthMiddleware.generateAccessToken(user)

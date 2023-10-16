@@ -81,75 +81,147 @@
                                             </div>
                                         </div>
 
-                                        <div class="card" >
-                                            <div class="card-body ">
-                                                <div class="card-header-2">
-                                                    <h5>Customer Address</h5>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="mb-4 row align-items-center">
-                                                        <label
-                                                            class="form-label-title col-lg-3 col-md-3 mb-0">
-                                                            Address Line 1
-                                                        </label>
-                                                        <div class="col-md-9 col-lg-9">
-                                                            <input class="form-control" type="text" name="address1" placeholder="Enter Address 1...." value="<%= address.address_1%>">
-                                                        </div>
+                                        <% if(address) {%>
+                                            <div class="card" >
+                                                <div class="card-body ">
+                                                    <div class="card-header-2">
+                                                        <h5>Customer Address</h5>
                                                     </div>
-                                                    
-                                                    <div class="mb-4 row align-items-center">
-                                                        <label
-                                                            class="form-label-title col-lg-3 col-md-3 mb-0">
-                                                            Address Line 2
-                                                        </label>
-                                                        <div class="col-md-9 col-lg-9">
-                                                            <input class="form-control" type="text" name="address2" placeholder="Enter Address 2...." value="<%= address.address_2%>">
-                                                        </div>
-                                                    </div>
-                                                    
-
-                                                    <div class="mb-4 row align-items-center">
-                                                        <div class="col-lg-6 col-md-6">
+                                                    <div class="row">
+                                                        <div class="mb-4 row align-items-center">
                                                             <label
-                                                                class="col-form-label form-label-title">Area
+                                                                class="form-label-title col-lg-3 col-md-3 mb-0">
+                                                                Address Line 1
                                                             </label>
-                                                            <input class="form-control" type="text" name="area" placeholder="Enter Area...." value="<%= address.area %>">
+                                                            <div class="col-md-9 col-lg-9">
+                                                                <input class="form-control" type="text" name="address1" placeholder="Enter Address 1...." value="<%= address.address_1%>">
+                                                            </div>
                                                         </div>
                                                         
-                                                        <div class="col-lg-6 col-md-6">
+                                                        <div class="mb-4 row align-items-center">
                                                             <label
-                                                                class="col-form-label form-label-title">PinCode
+                                                                class="form-label-title col-lg-3 col-md-3 mb-0">
+                                                                Address Line 2
                                                             </label>
-                                                            <input class="form-control" type="text" placeholder="Enter Pincode...." name="pincode" id="numberInput" oninput="validateInput(this)" value="<%= address.pincode%>">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-4 row align-items-center">
-                                                        <div class="col-lg-4 col-md-4">
-                                                            <label
-                                                                class="col-form-label form-label-title">City
-                                                            </label>
-                                                            <input class="form-control" type="text" name="city" placeholder="Enter City...." value="<%= address.city%>">  
+                                                            <div class="col-md-9 col-lg-9">
+                                                                <input class="form-control" type="text" name="address2" placeholder="Enter Address 2...." value="<%= address.address_2%>">
+                                                            </div>
                                                         </div>
                                                         
-                                                        <div class="col-lg-4 col-md-4">
-                                                            <label
-                                                                class="col-form-label form-label-title">State
-                                                            </label>
-                                                            <input class="form-control" type="text" name="state" placeholder="Enter State...." value="<%= address.state%>">                                                        
-                                                        </div>
-                                                        
-                                                        <div class="col-lg-4 col-md-4">
-                                                            <label
-                                                                class="col-form-label form-label-title">Country
-                                                            </label>
-                                                            <input class="form-control" type="text" name="country" placeholder="Enter Your Country...." value="<%= address.country%>" >
-                                                        </div>
-                                                    </div>
 
+                                                        <div class="mb-4 row align-items-center">
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <label
+                                                                    class="col-form-label form-label-title">Area
+                                                                </label>
+                                                                <input class="form-control" type="text" name="area" placeholder="Enter Area...." value="<%= address.area %>">
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <label
+                                                                    class="col-form-label form-label-title">PinCode
+                                                                </label>
+                                                                <input class="form-control" type="text" placeholder="Enter Pincode...." name="pincode" id="numberInput" oninput="validateInput(this)" value="<%= address.pincode%>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-4 row align-items-center">
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <label
+                                                                    class="col-form-label form-label-title">City
+                                                                </label>
+                                                                <input class="form-control" type="text" name="city" placeholder="Enter City...." value="<%= address.city%>">  
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <label
+                                                                    class="col-form-label form-label-title">State
+                                                                </label>
+                                                                <input class="form-control" type="text" name="state" placeholder="Enter State...." value="<%= address.state%>">                                                        
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <label
+                                                                    class="col-form-label form-label-title">Country
+                                                                </label>
+                                                                <input class="form-control" type="text" name="country" placeholder="Enter Your Country...." value="<%= address.country%>" >
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <% }else {%>
+                                            <div class="card" >
+                                                <div class="card-body ">
+                                                    <div class="card-header-2">
+                                                        <h5>Customer Address</h5>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-4 row align-items-center">
+                                                            <label
+                                                                class="form-label-title col-lg-3 col-md-3 mb-0">
+                                                                Address Line 1
+                                                            </label>
+                                                            <div class="col-md-9 col-lg-9">
+                                                                <input class="form-control" type="text" name="address1" placeholder="Enter Address 1....">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="mb-4 row align-items-center">
+                                                            <label
+                                                                class="form-label-title col-lg-3 col-md-3 mb-0">
+                                                                Address Line 2
+                                                            </label>
+                                                            <div class="col-md-9 col-lg-9">
+                                                                <input class="form-control" type="text" name="address2" placeholder="Enter Address 2....">
+                                                            </div>
+                                                        </div>
+                                                        
+
+                                                        <div class="mb-4 row align-items-center">
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <label
+                                                                    class="col-form-label form-label-title">Area
+                                                                </label>
+                                                                <input class="form-control" type="text" name="area" placeholder="Enter Area....">
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <label
+                                                                    class="col-form-label form-label-title">PinCode
+                                                                </label>
+                                                                <input class="form-control" type="text" placeholder="Enter Pincode...." name="pincode" id="numberInput" oninput="validateInput(this)">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-4 row align-items-center">
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <label
+                                                                    class="col-form-label form-label-title">City
+                                                                </label>
+                                                                <input class="form-control" type="text" name="city" placeholder="Enter City....">
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <label
+                                                                    class="col-form-label form-label-title">State
+                                                                </label>
+                                                                <input class="form-control" type="text" name="state" placeholder="Enter State....">
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <label
+                                                                    class="col-form-label form-label-title">Country
+                                                                </label>
+                                                                <input class="form-control" type="text" name="country" placeholder="Enter Your Country....">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
                                         
 
                                         <div class="card">

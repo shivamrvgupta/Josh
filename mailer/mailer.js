@@ -9,8 +9,8 @@ module.exports = {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'shivamrvgupta@gmail.com', // Replace with your Gmail email address
-                pass: 'juopomfyzfjzbhti', // Replace with your Gmail password or an app-specific password
+                user: 'joshfuels.india@gmail.com', // Replace with your Gmail email address
+                pass: 'Josh#Fuels@2022', // Replace with your Gmail password or an app-specific password
             },
         });
     

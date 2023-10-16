@@ -31,12 +31,13 @@ module.exports = {
         if(!user){
           return res.redirect('/admin/auth/login')
         }
-      const orders = await models.BranchModel.Order
-      .find()
-      .populate('user_id')
-      .populate('branch_id')
-      .populate('address_id')
-      .populate('address_id')
+        const orders = await models.BranchModel.Order
+        .find()
+        .populate('user_id')
+        .populate('branch_id')
+        .populate('address_id')
+        .populate('delivery_id') // Populate the delivery information if applicable
+        .sort({ updated_date: -1 });
     
       const customers = await models.UserModel.User.find({ usertype: "Customer" });
       const branches = await models.BranchModel.Branch.find();
@@ -60,8 +61,8 @@ module.exports = {
         const confirmed = orderInfo.filter(order => order.status === "Confirmed");
         const confirmCount = confirmed.length;
 
-        const processing = orderInfo.filter(order => order.status === "Processing");
-        const processCount = processing.length;
+        // const processing = orderInfo.filter(order => order.status === "Processing");
+        // const processCount = processing.length;
 
         const outForDelivery = orderInfo.filter(order => order.status === "Out for delivery");
         const deliveryCount = outForDelivery.length;
@@ -69,14 +70,14 @@ module.exports = {
         const delivered = orderInfo.filter(order => order.status === "Delivered");
         const deliveredCount = delivered.length;
 
-        const failed = orderInfo.filter(order => order.status === "Failed");
-        const failedCount = failed.length;
+        // const failed = orderInfo.filter(order => order.status === "Failed");
+        // const failedCount = failed.length;
 
         const cancelled = orderInfo.filter(order => order.status === "Cancelled");
         const cancelledCount = cancelled.length;
         
-        const returned = orderInfo.filter(order => order.status === "Returned");
-        const returnCount = returned.length;
+        // const returned = orderInfo.filter(order => order.status === "Returned");
+        // const returnCount = returned.length;
 
         const scheduled = orderInfo.filter(order => order.status === "Scheduled");
         const schedludedCount = scheduled.length;
@@ -85,11 +86,11 @@ module.exports = {
           all:allCount,
           pending:pendingCount,
           confirmed:confirmCount,
-          processing:processCount,
+          // processing:processCount,
           out:deliveryCount,
           delivered:deliveredCount,
-          returned:returnCount,
-          failed:failedCount,
+          // returned:returnCount,
+          // failed:failedCount,
           cancelled:cancelledCount,
           scheduled:schedludedCount,
         };
@@ -137,8 +138,8 @@ module.exports = {
         let status = statuses;
 
 
-        if (statuses === "Out for delivery") {
-          status = "out_for_delivery";
+        if (statuses === "out_for_delivery") {
+          status = "Out for delivery";
         } 
         
         console.log(status)
@@ -147,17 +148,17 @@ module.exports = {
         const statusMessages = {
           pending: "List of Pending Orders",
           confirmed: "List of Confirm Orders",
-          processing: "List of Processing Orders",
+          // processing: "List of Processing Orders",
           out_for_delivery: "List of Out For Delivery",
           delivered: "List of Delivered Orders",
-          returned: "List of Return Orders",
-          failed: "List of Failed Orders",
+          // returned: "List of Return Orders",
+          // failed: "List of Failed Orders",
           cancelled: "List of Cancelled Orders",
           scheduled: "List of Scheduled Orders",
         };
     
         // Validate if the provided status is in the mapping
-        if (!statusMessages[status]) {
+        if (!statusMessages[statuses]) {
           return res.status(400).send('Invalid status');
         }
     
@@ -169,6 +170,8 @@ module.exports = {
           .populate('address_id')
           .populate('address_id');
     
+        console.log(status.charAt(0).toUpperCase() + status.slice(1))
+        // console.log(orders)
         const branches = await models.BranchModel.Branch.find();  
 
         const customers = await models.UserModel.User.find({ usertype: "Customer" });
@@ -208,7 +211,8 @@ module.exports = {
         } else if (newStatus === 'Cancelled') {
           isCancelled = true;
         }
-    
+
+        
         const updatedOrder = await models.BranchModel.Order.findOne({order_id:orderId});
 
         console.log(updatedOrder);

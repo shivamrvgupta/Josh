@@ -116,7 +116,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-6 d-flex ">
+                        <!-- <div class="col-xl-6 d-flex ">
                             <div class="card o-hidden card-hover">
                                 <div class="card-header border-0 pb-1">
                                     <div class="card-header-title">
@@ -138,107 +138,8 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
+                        </div> -->
                         <!-- chart caard section End -->
-
-                        <!-- Addon start-->
-                        <div class="col-xl-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header card-header-top card-header--2">
-                                    <div class="card-header-title">
-                                        <h4>Addon</h4>
-                                    </div>
-                                </div>
-
-                                <div class="card-body p-0">
-                                    <div>
-                                        <div class="table-responsive">
-                                            <table class="best-selling-table table border-0">
-                                                <tbody>
-                                                    <% addOn.forEach(function(item){ %>
-                                                    <tr class="table-order">
-                                                        <td>
-                                                            <p>Product Name</p>
-                                                            <h5><%= item.name %></h5>
-                                                        </td>
-                                                        <td>
-                                                            <p>Price</p>
-                                                            <h5>₹<%= item.price %></h5>
-                                                        </td>
-                                                        <td>
-                                                            <p>Created at</p>
-                                                            <h5><%= item.created_at.toLocaleDateString('en-UK',options) %></h5>
-                                                        </td>
-                                                    </tr>
-                                                    <% }) %>
-                                                </tbody>
-
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Addon end-->
-
-                        <!-- Earning chart star-->
-                        <!-- Earning chart  end-->
-
-
-                        <!-- Best Selling Product Start -->
-                        <div class="col-xxl-6 col-md-6">
-                            <div class="card o-hidden card-hover">
-                                <div class="card-header card-header-top card-header--2">
-                                    <div class="card-header-title">
-                                        <h4>Best Selling Product</h4>
-                                    </div>
-
-                                    <div class="best-selling-box">
-                                        <span>Short By:</span>
-                                        <div class="dropdown">
-                                            <button class="btn p-0 dropdown-toggle" type="button"
-                                                data-bs-toggle="dropdown" data-bs-auto-close="true">Today</button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-body p-0">
-                                    <div>
-                                        <div class="table-responsive">
-                                            <table class="best-selling-table table border-0">
-                                                <tbody>
-                                                    <% products.forEach(function(item){ %>
-                                                    <tr class="table-order">
-                                                        <td>
-                                                            <p>Product Name</p>
-                                                            <h5><%= item.name %></h5>
-                                                        </td>
-                                                        <td>
-                                                            <p>Quantity</p>
-                                                            <h5> <%= productQuantities[item._id] || 0 %></h5>
-                                                            <h5> <% console.log(productQuantities) %></h5>
-                                                            
-                                                        </td>
-                                                        <td>
-                                                            <p>Price</p>
-                                                            <h5>₹<%= item.price %></h5>
-                                                        </td>
-                                                    </tr>
-                                                    <% }) %>
-                                                </tbody>
-    
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Best Selling Product End -->
 
 
                         <!-- Earning chart star-->
@@ -258,7 +159,7 @@
 
 
                         <!-- Transactions start-->
-                        <!-- <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-4 col-md-6">
                             <div class="card o-hidden card-hover">
                                 <div class="card-header border-0">
                                     <div class="card-header-title">
@@ -342,8 +243,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                        <!-- Transactions end-->
+                        </div> 
+                        <!-- Transactions end
 
                         <!-- visitors chart start-->
                         <!-- <div class="col-xxl-4 col-md-6">

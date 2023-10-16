@@ -1,0 +1,59 @@
+
+########## Cart API ##########
+
+### 
+    # Show Cart
+###
+GET  http://localhost:3000/api/auth/cart/get
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTc0MzU0NDUsImV4cCI6MTY5ODA0MDI0NX0._mjaKLWVk5A84DGaokW35dh00teBdxgdqLU-i_As7ug
+
+### 
+    # Add To Cart
+###
+POST http://localhost:3000/api/auth/cart/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTc0MzU0NDUsImV4cCI6MTY5ODA0MDI0NX0._mjaKLWVk5A84DGaokW35dh00teBdxgdqLU-i_As7ug
+
+{
+    "product" : "64f6da5aed30c8f3d5765007",
+    "quantity" : "15"
+}
+
+### 
+    # Update Cart Data
+###
+POST http://localhost:3000/api/auth/cart/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTc0MzU0NDUsImV4cCI6MTY5ODA0MDI0NX0._mjaKLWVk5A84DGaokW35dh00teBdxgdqLU-i_As7ug
+
+{
+    "cart_id" : "652cc91b17c5dcafb2fa2c41",
+    "product_id" : "64f6da5aed30c8f3d5765007",
+    "quantity" : 215
+}
+
+### 
+    # Delete Single Cart Data
+###
+POST http://localhost:3000/api/auth/cart/delete-item
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
+
+{
+    "cart_id" : "6509f70778e25cf42012d7e8",
+    "product_id" : "64f6da5aed30c8f3d5765007"
+}
+
+### 
+    # Delete Cart Data
+###
+DELETE http://localhost:3000/api/auth/cart/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
+
+{
+    "cart_id" : "6511567d24cf23e69c137a41",
+    "product_id" : "64f6da85ed30c8f3d5765043"
+}
+

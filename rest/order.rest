@@ -1,0 +1,57 @@
+
+###         # Order API  #       ###
+## CREATE ORDER 
+POST http://localhost:3000/api/auth/order/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5NzQyOTY3NSwiZXhwIjoxNjk4MDM0NDc1fQ.u0OOwtNepb0txttDHfKKW5D_IWsYVgSsivIuHwL7EYY
+
+{
+    "address_id": "65005b0e9e3e67d260a93946",
+    "cart_id": "652cc91b17c5dcafb2fa2c41",
+    "delivery_date": "19/10/2023",
+    "delivery_time": "2:00 - 10:00",
+    "payment_method": "Cash on Delivery",
+    "note": "Keep the Diesels extra on;y",
+    "total_price" : 21930,
+    "coupon_discount" : 100,
+    "delivery_fee" : 300,
+    "grand_total": 22130
+
+}
+
+
+### GeT ORDER 
+GET http://localhost:3000/api/auth/order/get
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5NzQyOTY3NSwiZXhwIjoxNjk4MDM0NDc1fQ.u0OOwtNepb0txttDHfKKW5D_IWsYVgSsivIuHwL7EYY
+
+### GeT Single ORDER 
+GET http://localhost:3000/api/auth/order/get-order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5NzQyOTY3NSwiZXhwIjoxNjk4MDM0NDc1fQ.u0OOwtNepb0txttDHfKKW5D_IWsYVgSsivIuHwL7EYY
+
+{
+    "order_id" : "100002"
+}
+
+### Cancel order
+POST http://localhost:3000/api/auth/order/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5NzQyOTY3NSwiZXhwIjoxNjk4MDM0NDc1fQ.u0OOwtNepb0txttDHfKKW5D_IWsYVgSsivIuHwL7EYY
+
+{
+    "order_id" : "100002"
+}
+
+### Update order
+POST http://localhost:3000/api/auth/order/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5NzQyOTY3NSwiZXhwIjoxNjk4MDM0NDc1fQ.u0OOwtNepb0txttDHfKKW5D_IWsYVgSsivIuHwL7EYY
+
+{
+    "order_id" : "100002",
+    "product_id" : "64f6da85ed30c8f3d5765043",
+    "quantity" : 100,
+    "total_price" : 12385,
+    "grand_total" : 22130
+}   

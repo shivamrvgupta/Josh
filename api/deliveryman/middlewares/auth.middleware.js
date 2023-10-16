@@ -52,7 +52,6 @@ module.exports = {
       last_name : user.last_name,
       email : user.email,
       phone : user.phone,
-      is_privilaged : user.is_privilaged,
     };
     return jwt.sign(userObject , secretKey, { expiresIn: '7d' });
   },

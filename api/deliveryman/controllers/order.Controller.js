@@ -22,7 +22,7 @@ module.exports = {
                 // Query the database to fetch orders for the user
                 const orders = await models.BranchModel.Order.find({
                     user_id: user_id,
-                }).sort({ created_at: -1 });
+                });
         
                 // Check if any orders were found
                 if (orders && orders.length > 0) {

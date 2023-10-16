@@ -27,7 +27,6 @@ module.exports = {
   
       // Fetch user's city based on the sessions user_id
       const cart = await models.BranchModel.Cart.find({ user_id: session.userId });
-      const user = await models.UserModel.User.find({ _id: session.userId })
       const cartCount = cart.length;
       console.log(cart);
   
@@ -58,17 +57,6 @@ module.exports = {
                 _id: product.product_id,
               });
               if (productInfo) {
-                if(user.is_privilaged == true ){
-                  return {
-                    product_id: product.product_id,
-                    product_name: productInfo[0].name,
-                    product_img: productInfo[0].image,
-                    quantity: product.quantity,
-                    price: product.price,
-                    customer_price : user.fixed_price,
-                    _id: product._id,
-                  };
-                }
                 return {
                   product_id: product.product_id,
                   product_name: productInfo[0].name,
@@ -142,8 +130,8 @@ module.exports = {
         const session = req.user;
         const user_id = session.userId;
     
-        console.log(`User ${session.first_name} Adding Data to Cart`);
-    
+        console.log(`User ${session.first_name} Adding Data to Cart`)
+
         if (!user_id) {
           return res.status(StatusCodesConstants.ACCESS_DENIED).json({
             status: false,
@@ -159,13 +147,13 @@ module.exports = {
         };
     
         const validationResult = Validator.validate(cartData, {
-          product_id: {
-            presence: { allowEmpty: false },
+          product_id : {
+            presence : {allowEmpty : false }
           },
           quantity: {
             presence: { allowEmpty: false },
             length: { minimum: 1, maximum: 100 },
-          },
+          }
         });
     
         if (validationResult) {
@@ -176,39 +164,40 @@ module.exports = {
             data: validationResult,
           });
         }
-    
+          
         const productInfo = await models.BranchModel.BranchProduct.findOne({
           _id: cartData.product_id,
         });
-    
-        const userInfo = await models.UserModel.User.findOne({
-          _id: user_id,
-        });
         if (productInfo) {
+
           // Step 3: Extract the price from the retrieved product information
-          const branchInfo = await models.BranchModel.Branch.findOne({
-            _id: productInfo.branch,
+          const productPrice = productInfo.branch_price;
+
+          const branchInfo = await models.BranchModel.Branch.findOne({ 
+            _id: productInfo.branch 
           });
-    
+
+
           const product_detail = {
             product_id: cartData.product_id,
             quantity: cartData.quantity,
-            price: userInfo.is_privilaged ? userInfo.fixed_price : productInfo.branch_price,
-            customer_price: productInfo.branch_price,
+            price: productInfo.branch_price,
           };
-    
+          
           console.log(product_detail);
-    
+          
           const existingCart = await models.BranchModel.Cart.findOne({
             user_id: cartData.user_id,
             branch_id: productInfo.branch,
           });
-    
+          
+          console.log(existingCart);
+          
           if (existingCart) {
-            const productExists = existingCart.product_items.some((item) => {
+            const productExists = existingCart.product_items.some(item => {
               return item.product_id.toString() === cartData.product_id.toString();
             });
-    
+          
             if (productExists) {
               return res.status(StatusCodesConstants.SUCCESS).json({
                 status: true,
@@ -220,60 +209,60 @@ module.exports = {
               console.log('Product with the same product_id does not exist in the array');
               existingCart.product_items.push(product_detail);
               await existingCart.save();
-    
+          
               const responseData = {
                 user: {
-                  user_id: session.userId,
+                  user_id: cartData.user_id,
                   first_name: session.first_name,
                   last_name: session.last_name,
                 },
                 product: existingCart.product_items, // Use the existingCart.product_items
                 product_name: productInfo.name,
-                branch_price: productInfo.branch_price,
                 product_img: productInfo.image,
+                price: existingCart.price, // Use the existingCart.price
                 branch: {
                   branch_id: branchInfo._id,
                   branch_name: branchInfo.name,
                 },
               };
-    
-              console.log("This is response Data", responseData);
+          
               console.log(`User ${session.first_name} ${MessageConstants.CART_ADD_SUCCESSFULLY}`);
               return res.status(StatusCodesConstants.SUCCESS).json({
                 status: true,
-                status_code: StatusCodesConstants.ACCESS_DENIED,
+                status_code: StatusCodesConstants.SUCCESS,
                 message: MessageConstants.CART_ADD_SUCCESSFULLY,
                 data: responseData,
               });
             }
-          } else {
+          }else{
+
             // Step 4: Store the price and other cart data in the database
             const cartItem = {
               user_id: cartData.user_id,
               branch_id: productInfo.branch,
-              product_items: [product_detail], // Store the price in the cart item as an array
+              product_items : product_detail// Store the price in the cart item
             };
-    
+            
             const newCart = new models.BranchModel.Cart(cartItem);
             await newCart.save();
-    
+            
             // Create a new object with specific fields from product and branch
             const responseData = {
-              user: {
-                user_id: cartData.user_id,
-                first_name: session.first_name,
-                last_name: session.last_name,
+              user : {
+                user_id : cartData.user_id,
+                first_name : session.first_name ,
+                last_name : session.last_name ,
               },
               product: newCart.product_items,
               product_name: productInfo.name,
               product_img: productInfo.image,
-              branch_price: productInfo.branch_price,
+              price: newCart.price,
               branch: {
                 branch_id: branchInfo._id,
-                branch_name: branchInfo.name,
+                branch_name: branchInfo.name
               },
-            };
-            console.log(`User ${session.first_name} ${MessageConstants.CART_ADD_SUCCESSFULLY}`);
+            }
+            console.log(`User ${session.first_name} ${MessageConstants.CART_ADD_SUCCESSFULLY}`)
             return res.status(StatusCodesConstants.SUCCESS).json({
               status: true,
               status_code: StatusCodesConstants.SUCCESS,
@@ -286,7 +275,7 @@ module.exports = {
             status: true,
             status_code: StatusCodesConstants.NOT_FOUND,
             message: MessageConstants.PRODUCT_NOT_PRESENT,
-            data: [],
+            data: cartData,
           });
         }
       } catch (error) {
@@ -296,7 +285,6 @@ module.exports = {
           .json({ error: MessageConstants.INTERNAL_SERVER_ERROR });
       }
     },
-  
 
   // Update Cart Data
     updateCartData: async (req, res) => {
@@ -304,8 +292,8 @@ module.exports = {
         const session = req.user;
         const user_id = session.userId;
     
-        console.log(`User ${session.first_name} updating Cart`);
-    
+        console.log(`User ${session.first_name} updating Cart`)
+
         if (!user_id) {
           return res.status(StatusCodesConstants.ACCESS_DENIED).json({
             status: false,
@@ -322,11 +310,11 @@ module.exports = {
         };
     
         const validationResult = Validator.validate(cartData, {
-          product_id: {
-            presence: { allowEmpty: false },
+          product_id : {
+            presence : {allowEmpty : false }
           },
-          cart_id: {
-            presence: { allowEmpty: false },
+          cart_id : {
+            presence : {allowEmpty : false }
           },
           quantity: {
             presence: { allowEmpty: false },
@@ -345,51 +333,47 @@ module.exports = {
         const productInfo = await models.BranchModel.BranchProduct.findOne({
           _id: cartData.product_id,
         });
-    
-        const userInfo = await models.UserModel.User.findOne({
-          _id: user_id,
-        });
-    
+          
         if (productInfo) {
           const branchInfo = await models.BranchModel.Branch.findOne({
             _id: productInfo.branch,
           });
-    
+        
           const product_detail = {
             product_id: cartData.product_id,
             quantity: cartData.quantity,
-            price: userInfo.is_privilaged ? userInfo.fixed_price : productInfo.branch_price,
-            branch_price: productInfo.branch_price,
+            price: productInfo.branch_price,
           };
-    
+
           console.log(product_detail);
-    
+
+
           // Step 1: Check if there is already a cart item with the same user_id, branch_id, and product_id
           const existingCart = await models.BranchModel.Cart.findOne({
             user_id: cartData.user_id,
             branch_id: productInfo.branch,
           });
-    
+      
           console.log(existingCart);
-    
+
+
           if (existingCart) {
             const productIndex = existingCart.product_items.findIndex((item) => {
               return item.product_id.toString() === cartData.product_id.toString();
             });
-    
+            
             if (productIndex !== -1) {
               // If the product exists, update its quantity and price
               existingCart.product_items[productIndex].quantity = cartData.quantity;
-              existingCart.product_items[productIndex].price = product_detail.price;
             } else {
               // If the product doesn't exist, add it to the cart
               existingCart.product_items.push(product_detail);
             }
-    
+        
             // Recalculate total price based on the updated quantities and prices
-    
+        
             await existingCart.save();
-    
+
             const responseData = {
               user: {
                 user_id: cartData.user_id,
@@ -399,13 +383,12 @@ module.exports = {
               product: existingCart.product_items,
               product_name: productInfo.name,
               product_img: productInfo.image,
-              branch_price: productInfo.branch_price,
               branch: {
                 branch_id: branchInfo._id,
                 branch_name: branchInfo.name,
               },
             };
-    
+
             console.log(`User ${session.first_name} ${MessageConstants.CART_UPDATE_SUCCESSFULLY}`);
             return res.status(StatusCodesConstants.SUCCESS).json({
               status: true,
@@ -438,7 +421,6 @@ module.exports = {
           .json({ error: MessageConstants.INTERNAL_SERVER_ERROR });
       }
     },
-  
 
     deleteCartItem: async (req, res) => {
       try {

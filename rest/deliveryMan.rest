@@ -1,0 +1,21 @@
+###
+    # DeliveryMan Login
+###
+POST http://localhost:3000/api/auth/deliveryman/login
+Content-Type: application/json
+
+{
+    "phone" : "8850664191"
+}
+
+
+###
+    # Verify OTP
+###
+POST http://localhost:3000/api/auth/deliveryman/verify-otp
+Content-Type: application/json
+
+{
+    "phone" : "8850664191",
+    "otp" : "3278"
+}
