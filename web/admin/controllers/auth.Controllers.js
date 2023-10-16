@@ -188,7 +188,56 @@ module.exports = {
         }
         
         res.redirect('/branch/auth/dashboard');
-    }
+    },
+
+    getMonthlyData : async(req,res) => {
+      try {
+        const totalRevenuePerMonth = await models.BranchModel.Order.aggregate([
+          {
+            $match: {
+              status: "Delivered",
+              payment_status: true
+            }
+          },
+          {
+            $group: {
+              _id: {
+                month: { $month: '$created_date' },
+                year: { $year: '$created_date' }
+              },
+              totalRevenue: { $sum: '$total_price' }
+            }
+          },
+          {
+            $sort: { '_id.year': 1, '_id.month': 1 }
+          }
+        ]);
+    
+        // Create an object to store revenue data per month
+        const monthlyRevenue = {};
+        
+        // Iterate through the results and populate the object with data
+        totalRevenuePerMonth.forEach(item => {
+          const monthKey = `${item._id.year}-${item._id.month}`;
+          monthlyRevenue[monthKey] = item.totalRevenue;
+        });
+    
+        // Generate data for all months of the year
+        const allMonthsData = [];
+        for (let month = 1; month <= 12; month++) {
+          const monthKey = `${new Date().getFullYear()}-${month}`;
+          allMonthsData.push({
+            x: monthKey,
+            y: monthlyRevenue[monthKey] || 0
+          });
+        }
+    
+        res.json(allMonthsData);
+      } catch (error) {
+        console.error('Error fetching total revenue data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    },
 
 }
 

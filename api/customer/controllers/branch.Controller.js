@@ -107,7 +107,7 @@ module.exports = {
             status: true,
             status_code: StatusCodesConstants.NOT_FOUND,
             message: MessageConstants.PRODUCT_NOT_PRESENT,
-            data: [],
+            data: {},
           });
         }else{
           return res.status(StatusCodesConstants.SUCCESS).json({
