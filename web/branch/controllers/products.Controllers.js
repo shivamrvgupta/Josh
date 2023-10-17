@@ -329,5 +329,21 @@ module.exports = {
       res.status(400).send(err.message);
     }
   },
+  getDetail : async (req, res) => {
+    try {
+      const productId = req.params.id;
+      const product = await models.BranchModel.BranchProduct.findById(productId).populate('category').populate('sub_category');
+
+      const user = req.user;
+      const addon = await models.ProductModel.AddOn.find({})
+      if (!user) {
+        return res.redirect('/branch/auth/login');
+      }
+      res.render('branch/products/detail', { user,addon, product, error:"Product Detail"});
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+    }
+  }
 }
 
