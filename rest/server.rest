@@ -1,7 +1,7 @@
 ###
     # Customer Login
 ###
-POST http://3.6.94.67/api/auth/customer/login
+POST http://35.154.189.224/api/auth/customer/login
 Content-Type: application/json
 
 {
@@ -11,19 +11,19 @@ Content-Type: application/json
 ###
     # Verify OTP
 ###
-POST http://3.6.94.67/admin/api/auth/customer/verify-otp
+POST http://35.154.189.224/api/auth/customer/verify-otp
 Content-Type: application/json
 
 {
     "phone" : "8850664191",
-    "otp" : "5307"
+    "otp" : "2558"
 }
 
 
 
 
 ### Registration
-POST http://127.0.0.1:3000/api/auth/customer/register
+POST http://127.0.0.1:3000api/auth/customer/register
 Content-Type: application/json
 
 {
@@ -36,12 +36,12 @@ Content-Type: application/json
 }
 
 ### Get Profile
-GET http://127.0.0.1:3000/api/auth/customer/getProfile
+GET http://127.0.0.1:3000api/auth/customer/getProfile
 Content-Type: application/json
 Authorization: Bearer 
 
 ### Update Profile
-POST http://127.0.0.1:3000/api/auth/customer/updateProfile
+POST http://127.0.0.1:3000api/auth/customer/updateProfile
 Content-Type: application/json
 Authorization: Bearer 
 
@@ -50,7 +50,7 @@ Authorization: Bearer
 }
 
 ### Update Profile Photo 
-POST http://127.0.0.1:3000/api/auth/customer/updatePhoto
+POST http://127.0.0.1:3000api/auth/customer/updatePhoto
 Content-Type: application/json
 Authorization: Bearer 
 
@@ -60,7 +60,7 @@ Authorization: Bearer
 
 
 ### Add Address
-POST http://3.6.94.67/admin/api/auth/customer/add-address
+POST http://35.154.189.224/api/auth/customer/add-address
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4.eyJ1c2VySWQiOiI2NTFmYjNlODQxZWRlNjgxYzE2Y2Q3NTkiLCJmaXJzdF9uYW1lIjoiVGVzIiwibGFzdF9uYW1lIjoiVEVzdCIsImVtYWlsIjoidGVzdEBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI5MjEwMTI5MDEyIiwiaWF0IjoxNjk2NTc2NDg5LCJleHAiOjE2OTcxODEyODl9.CUa2Wi7sJKRuTp7NZVJ6kCN9Z3WgCQsR9FK5GoDunbg
 
@@ -75,12 +75,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 }
 
 ### Get Address
-GET http://3.6.94.67/admin/api/auth/customer/get-address
+GET http://35.154.189.224/api/auth/customer/get-address
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
 ### Update Address
-POST http://3.6.94.67/admin/api/auth/customer/update-address
+POST http://35.154.189.224/api/auth/customer/update-address
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -96,7 +96,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 }
 
 ### Deleted Address 
-DELETE http://3.6.94.67/admin/api/auth/customer/delete-address
+DELETE http://35.154.189.224/api/auth/customer/delete-address
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -105,7 +105,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 }
 
 ### Add Device
-POST http://3.6.94.67/admin/api/auth/customer/add-device
+POST http://35.154.189.224/api/auth/customer/add-device
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -116,17 +116,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 }
 
 ### Fetch data 
-Get http://3.6.94.67/admin/api/auth/customer/userdata
+Get http://35.154.189.224/api/auth/customer/userdata
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
 ### LogOut
-POST http://3.6.94.67/admin/api/auth/customer/logout
+POST http://35.154.189.224/api/auth/customer/logout
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4.eyJ1c2VySWQiOiI2NTFmYjNlODQxZWRlNjgxYzE2Y2Q3NTkiLCJmaXJzdF9uYW1lIjoiVGVzIiwibGFzdF9uYW1lIjoiVEVzdCIsImVtYWlsIjoidGVzdEBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI5MjEwMTI5MDEyIiwiaWF0IjoxNjk2NTc2NDg5LCJleHAiOjE2OTcxODEyODl9.CUa2Wi7sJKRuTp7NZVJ6kCN9Z3WgCQsR9FK5GoDunbg
 
 ### Send OTP to email 
-POST http://3.6.94.67/admin/api/auth/customer/send-otp
+POST http://35.154.189.224/api/auth/customer/send-otp
 Content-Type: application/json
 
 {
@@ -138,14 +138,14 @@ Content-Type: application/json
 ### 
     # Branch Details
 ###
-GET  http://3.6.94.67/admin/api/auth/branch/nearest-branch
+GET  http://35.154.189.224/api/auth/branch/nearest-branch
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
 ### 
     # Nearest Branch Product
 ###
-GET  http://3.6.94.67/admin/api/auth/branch/branchProducts
+GET  http://35.154.189.224/api/auth/branch/branchProducts
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -155,14 +155,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 ### 
     # Show Cart
 ###
-GET  http://3.6.94.67/admin/api/auth/cart/get
+GET  http://35.154.189.224/api/auth/cart/get
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM5NjMxNzhmNWJmMTI2Njc3YzI0MmEiLCJmaXJzdF9uYW1lIjoiU2hpdmFtIiwibGFzdF9uYW1lIjoiR3VwdGEiLCJlbWFpbCI6ImFkbWluQGpvc2hmdWVscy5jb20iLCJwaG9uZSI6Ijg4NTA2NjQxOTEiLCJpc19wcml2aWxhZ2VkIjpmYWxzZSwiaWF0IjoxNjk3Nzg3MzY4LCJleHAiOjE2OTgzOTIxNjh9.9EfSXpEu7Z122TphENTVLOreHpvRTUiissbcDHu8R88
 
 ### 
     # Add To Cart
 ###
-POST http://3.6.94.67/admin/api/auth/cart/add
+POST http://35.154.189.224api/auth/cart/add
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4 
 
@@ -174,7 +174,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 ### 
     # Update Cart Data
 ###
-POST http://3.6.94.67/admin/api/auth/cart/update
+POST http://35.154.189.224/api/auth/cart/update
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4 
 
@@ -187,7 +187,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 ### 
     # Delete Single Cart Data
 ###
-POST http://3.6.94.67/admin/api/auth/cart/delete-item
+POST http://35.154.189.224/api/auth/cart/delete-item
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -199,19 +199,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 ### 
     # Delete Cart Data
 ###
-DELETE http://3.6.94.67/admin/api/auth/cart/delete
+DELETE http://35.154.189.224api/auth/cart/delete
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM5NjMxNzhmNWJmMTI2Njc3YzI0MmEiLCJmaXJzdF9uYW1lIjoiU2hpdmFtIiwibGFzdF9uYW1lIjoiR3VwdGEiLCJlbWFpbCI6ImFkbWluQGpvc2hmdWVscy5jb20iLCJwaG9uZSI6Ijg4NTA2NjQxOTEiLCJpc19wcml2aWxhZ2VkIjpmYWxzZSwiaWF0IjoxNjk3Nzg3MzY4LCJleHAiOjE2OTgzOTIxNjh9.9EfSXpEu7Z122TphENTVLOreHpvRTUiissbcDHu8R88
 
 {
-    "cart_id" : "6511567d24cf23e69c137a41",
-    "product_id" : "64f6da85ed30c8f3d5765043"
+    "cart_id" : "651564f15b9479a09a6fcdf1"
+    
 }
 
 
 ###         # Order API  #       ###
 ## CREATE ORDER 
-POST http://3.6.94.67/admin/api/auth/order/add
+POST http://35.154.189.224/api/auth/order/add
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -231,12 +231,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 
 
 ### GeT ORDER 
-GET http://3.6.94.67/admin/api/auth/order/get
+GET http://35.154.189.224/api/auth/order/get
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
 ### GeT Single ORDER 
-GET http://3.6.94.67/admin/api/auth/order/get-order
+GET http://35.154.189.224/api/auth/order/get-order
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -247,7 +247,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 
 
 ### Cancel order
-POST http://3.6.94.67/admin/api/auth/order/delete
+POST http://35.154.189.224/api/auth/order/delete
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -256,7 +256,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 }
 
 ### Update order
-POST http://3.6.94.67/admin/api/auth/order/update
+POST http://35.154.189.224/api/auth/order/update
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGFAZGlzcG9zdGFibGUuY29tIiwicGhvbmUiOiI5ODcwODc4MDQwIiwiaWF0IjoxNjk2NzY0NjY1LCJleHAiOjE2OTczNjk0NjV9.NNdM9rWGbM4MNirKXc-o9aFLYKbGpSECsalPF5fBCN4
 
@@ -269,6 +269,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 }   
 
 ### Send Email
-POST http://3.6.94.67/admin/api/auth/customer/send-email
+POST http://35.154.189.224/api/auth/customer/send-email
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM5NjMxNzhmNWJmMTI2Njc3YzI0MmEiLCJmaXJzdF9uYW1lIjoiU2hpdmFtIiwibGFzdF9uYW1lIjoiR3VwdGEiLCJlbWFpbCI6ImFkbWluQGpvc2hmdWVscy5jb20iLCJwaG9uZSI6Ijg4NTA2NjQxOTEiLCJpYXQiOjE2OTY3NjkxMDAsImV4cCI6MTY5NzM3MzkwMH0.K0NRx1fEC8L0186YPz8OPKjftNEtXuWp3RUtqDR6KEQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM5NjMxNzhmNWJmMTI2Njc3YzI0MmEiLCJmaXJzdF9uYW1lIjoiU2hpdmFtIiwibGFzdF9uYW1lIjoiR3VwdGEiLCJlbWFpbCI6ImFkbWluQGpvc2hmdWVscy5jb20iLCJwaG9uZSI6Ijg4NTA2NjQxOTEiLCJpc19wcml2aWxhZ2VkIjpmYWxzZSwiaWF0IjoxNjk3NTMxNjgwLCJleHAiOjE2OTgxMzY0ODB9.8g1-dYeG8_ZewetPXPH_JdPh-TYUnumUUvWxhomqVuM

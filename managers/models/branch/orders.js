@@ -90,7 +90,7 @@ const orderSchema = new mongoose.Schema({
     },
     note : {
         type: String,
-        required: true,
+        required: false,
     },
     grand_total : {
         type: Number,

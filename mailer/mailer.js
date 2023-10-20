@@ -10,7 +10,7 @@ module.exports = {
             service: 'gmail',
             auth: {
                 user: 'joshfuels.india@gmail.com', // Replace with your Gmail email address
-                pass: 'Josh#Fuels@2022', // Replace with your Gmail password or an app-specific password
+                pass: 'wwvvmxaagrubckyb', // Replace with your Gmail password or an app-specific password
             },
         });
     
@@ -36,4 +36,5 @@ module.exports = {
         }
     },
     verifyEmail: '../../../src/views/mail/email_verification.html',
+    
 }

@@ -1,5 +1,6 @@
 const { MessageConstants, StatusCodesConstants } = require('../constants');
 const { Validator } = require('../../../managers/utils');
+const { Mailer } = require('../../../mailer')
 const models = require('../../../managers/models');
   
 module.exports = {
@@ -253,7 +254,6 @@ module.exports = {
             }
         },
     
-
     // Add Order Data
         addOrder : async (req, res) => {
             try {
@@ -312,10 +312,6 @@ module.exports = {
                     delivery_time: {
                       presence: { allowEmpty: false }, 
                       length: { minimum: 3, maximum: 100 },
-                    },
-                    note: {
-                      presence: { allowEmpty: false }, 
-                      length: { minimum: 3, maximum: 200 },
                     },
                     grand_total: {
                       presence: { allowEmpty: false }, 
@@ -419,6 +415,11 @@ module.exports = {
                     };
                     const newOrder = new models.BranchModel.Order(orderItem);
                     await newOrder.save();
+
+                    const recipientEmail = session.email;
+                    const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
+                    const recipientName = session.first_name +  session.last_name; 
+                    const templateFilePath = path.join(__dirname, Mailer.verifyEmail);
 
                     // Delete the cart after successfully adding the order
                     await models.BranchModel.Cart.deleteOne({ _id: orderData.cart_id });

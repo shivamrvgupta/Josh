@@ -437,7 +437,7 @@ module.exports = {
   
       const recipientEmail = session.email;
       const subject = 'Email Verification';
-      const token = "hello1234";
+      const token = "534212";
       const recipientName = session.first_name +  session.last_name; 
       const templateFilePath = path.join(__dirname, Mailer.verifyEmail);
 
