@@ -72,7 +72,7 @@ module.exports = {
                 lname,
                 phone,
                 email,
-                password,
+                password : await bcrypt.hash(password, 10),
                 id_image,
                 branch,
                 identity_type,
@@ -184,7 +184,7 @@ module.exports = {
             deliveryman.branch = branch;
             deliveryman.identity_type= identity_type;
             deliveryman.identity_number= identity_number ;
-            deliveryman.password = password;
+            deliveryman.password = await bcrypt.hash(password, 10);
             // deliveryman.id_image = id_image;
             // deliveryman.deliveryman_image= deliveryman_image ;
         

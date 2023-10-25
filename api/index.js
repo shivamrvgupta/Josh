@@ -3,6 +3,6 @@ const customer = require('./customer');
 const deliveryman = require('./deliveryman');
 
 router.use('/auth', customer);
-router.use('/auth', deliveryman);
+router.use('/auth/deliveryman', deliveryman);
 
 module.exports = router;

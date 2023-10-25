@@ -5,17 +5,67 @@ POST http://localhost:3000/api/auth/deliveryman/login
 Content-Type: application/json
 
 {
-    "phone" : "8850664191"
+    "email": "deliveryman1@joshfuels.com",
+    "password": "1234@user"
+}
+
+### Get Profile
+GET http://localhost:3000/api/auth/deliveryman/getProfile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgwMDg0LCJleHAiOjE2OTg3ODQ4ODR9.VAiaProJbqE338Hkegzq6LtG7Q8AJCSnAPrNgmUiu64
+
+### Get Profile
+GET http://localhost:3000/api/auth/deliveryman/userdata
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgwMDg0LCJleHAiOjE2OTg3ODQ4ODR9.VAiaProJbqE338Hkegzq6LtG7Q8AJCSnAPrNgmUiu64
+
+###
+    # Get order 
+###
+GET http://localhost:3000/api/auth/deliveryman/order/get
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgwMDg0LCJleHAiOjE2OTg3ODQ4ODR9.VAiaProJbqE338Hkegzq6LtG7Q8AJCSnAPrNgmUiu64
+
+###
+    # Get Single order 
+###
+GET http://localhost:3000/api/auth/deliveryman/order/get-order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgwMDg0LCJleHAiOjE2OTg3ODQ4ODR9.VAiaProJbqE338Hkegzq6LtG7Q8AJCSnAPrNgmUiu64
+
+{
+    "order_id" : "100009"
+}
+
+###
+    # Get Previous order 
+###
+GET http://localhost:3000/api/auth/deliveryman/order/previous-order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgyNjA0LCJleHAiOjE2OTg3ODc0MDR9.WU77t9vsubQ61oGYOQf0vBJZQSX8W0p3dPF-ofQpaw4
+
+
+###
+    # Update Delivery Status 
+###
+POST http://localhost:3000/api/auth/deliveryman/order/update-status
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgyNjA0LCJleHAiOjE2OTg3ODc0MDR9.WU77t9vsubQ61oGYOQf0vBJZQSX8W0p3dPF-ofQpaw4
+
+{
+    "order_id": "100009",
+    "status" : "Confirmed"
 }
 
 
 ###
-    # Verify OTP
+    # Update Payment Status 
 ###
-POST http://localhost:3000/api/auth/deliveryman/verify-otp
+POST http://localhost:3000/api/auth/deliveryman/order/update-payment
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgyNjA0LCJleHAiOjE2OTg3ODc0MDR9.WU77t9vsubQ61oGYOQf0vBJZQSX8W0p3dPF-ofQpaw4
 
 {
-    "phone" : "8850664191",
-    "otp" : "3278"
+    "order_id": "100009",
+    "status" : "Paid"
 }

@@ -48,8 +48,9 @@ module.exports = {
   generateAccessToken: (user) => {
     const userObject = {
       userId: user._id, // Replace with the actual user ID property
-      first_name : user.first_name,
-      last_name : user.last_name,
+      profile : user.deliveryman_image,
+      first_name : user.fname,
+      last_name : user.lname,
       email : user.email,
       phone : user.phone,
     };
