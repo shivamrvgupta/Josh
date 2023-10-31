@@ -26,7 +26,7 @@ module.exports = {
                 attachments: [
                     {
                         filename: invoicePdf, // The name of the attachment as it will appear in the email
-                        path: '../../' // The absolute or relative path to the PDF file
+                        path: `./src/invoices/${invoicePdf}` // The absolute or relative path to the PDF file
                     }
                 ] 
             };
