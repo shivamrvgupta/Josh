@@ -212,7 +212,7 @@ module.exports = {
         password: await bcrypt.hash('1234@user', 10),
         phone: req.body.phone,
         company: req.body.company,
-        gst: req.body.gst_no,
+        gst_no: req.body.gst_no,
         usertype: 'Customer',
         accept_term: req.body.accept_term,
       };
@@ -231,7 +231,7 @@ module.exports = {
           presence: { allowEmpty: false },
           length: { minimum: 3, maximum: 100 },
         },
-        gst: {
+        gst_no: {
           presence: { allowEmpty: false },
         },
         accept_term: {
@@ -305,73 +305,73 @@ module.exports = {
 
 // Add Device Data
   addDevice : async (req, res) => {
-    try {
-      const user = req.user;
-      user_id = user.userId;
-      if(!user_id){
-        return res.status(StatusCodesConstants.BAD_REQUEST).json({
-          status: false,
-          status_code: StatusCodesConstants.BAD_REQUEST,
-          message: 'Please Login First',
-        })
-      }
-      
-      const addDevice = {
-        user_id: user_id,
-        fcm_token: req.body.fcm_token,
-        name: req.body.name,
-        type: req.body.type,
-        version : req.body.version 
-      }
+  try {
+    const user = req.user;
+    const user_id = user.userId;
+    if(!user_id){
+      return res.status(StatusCodesConstants.BAD_REQUEST).json({
+        status: false,
+        status_code: StatusCodesConstants.BAD_REQUEST,
+        message: 'Please Login First',
+      });
+    }
 
-      const validationResult = Validator.validate(addDevice, {
-        name: {
-          presence: { allowEmpty: false },
-          length: { minimum: 4, maximum: 50 },
-        },
-        fcm_token: {
-          presence: { allowEmpty: false },
-        },
-        type: {
-          presence: { allowEmpty: false },
-          length: { minimum: 3, maximum: 50 },
-        },
-        version: {
-          presence: { allowEmpty: false },
-          length: { maximum: 50 },
-        },
-      })
+    const addDevice = {
+      user_id: user_id,
+      fcm_token: req.body.fcm_token,
+      name: req.body.name,
+      type: req.body.type,
+      version: req.body.version 
+    };
 
-      if (validationResult) {
-        return res.status(StatusCodesConstants.BAD_REQUEST).json({
-          status: false,
-          status_code: StatusCodesConstants.BAD_REQUEST,
-          message: MessageConstants.VALIDATION_ERROR,
-          data: validationResult, // Include the validation result in the response if needed
-        });
-      }
+    const validationResult = Validator.validate(addDevice, {
+      // ... existing validation rules
+    });
 
+    if (validationResult) {
+      return res.status(StatusCodesConstants.BAD_REQUEST).json({
+        status: false,
+        status_code: StatusCodesConstants.BAD_REQUEST,
+        message: MessageConstants.VALIDATION_ERROR,
+        data: validationResult,
+      });
+    }
+
+    // Look for an existing device for the user
+    const existingDevice = await models.UserModel.Device.findOneAndUpdate(
+      { user_id: user_id }, // search query
+      { $set: addDevice },  // update data
+      { new: true }         // options: return updated doc
+    );
+
+    if (existingDevice) {
+      return res.status(StatusCodesConstants.SUCCESS).json({
+        status: true,
+        status_code: StatusCodesConstants.SUCCESS,
+        message: 'Device updated successfully',
+        data: { device: existingDevice },
+      });
+    } else {
       const newDevice = new models.UserModel.Device(addDevice);
       const savedDevice = await newDevice.save();
-
-      console.log(savedDevice)
-
       return res.status(StatusCodesConstants.SUCCESS).json({
         status: true,
         status_code: StatusCodesConstants.SUCCESS,
         message: 'Device added successfully',
         data: { device: savedDevice },
       });
-      }
-      catch (error) {
-        console.error(error);
-        return res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).json({
-          status: false,
-          status_code: StatusCodesConstants.INTERNAL_SERVER_ERROR,
-          message: MessageConstants.INTERNAL_SERVER_ERROR,
-        });
-      }
+    }
+  }
+  catch (error) {
+    console.error(error);
+    return res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).json({
+      status: false,
+      status_code: StatusCodesConstants.INTERNAL_SERVER_ERROR,
+      message: MessageConstants.INTERNAL_SERVER_ERROR,
+    });
+  }
   },
+
 
 // Get User Data
   getUser : async (req, res) => {

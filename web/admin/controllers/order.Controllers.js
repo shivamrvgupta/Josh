@@ -14,6 +14,7 @@ const {
 const { generateAccessToken} = require('../middlewares/auth.middleware');
 const models = require('../../../managers/models');
 
+const { Notifier } = require('../../../managers/notifications')
 // This would be your token blacklist storage
 const tokenBlacklist = new Set();
 const options = { day: '2-digit', month: 'short', year: 'numeric' };
@@ -46,7 +47,7 @@ module.exports = {
       res.render("admin/order/all", {user, branches, ordersCount, customers, orders, options, error: "List of Orders"});
       }catch(err){
         console.log(err);
-        res.status(500).send('Internal Server Error');
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).send(MessageConstants.INTERNAL_SERVER_ERROR);
       }
     },
 
@@ -98,7 +99,7 @@ module.exports = {
         res.json(payload);
       } catch (error) {
           console.error(error);
-          res.status(500).json({ error: 'Internal Server Error' });
+          res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).json({ error:MessageConstants.INTERNAL_SERVER_ERROR});
       }
   },
 
@@ -122,7 +123,7 @@ module.exports = {
         res.render('admin/order/detail', { user,order, custom_css, options , error, deliveryman});
       } catch (err) {
         console.log(err);
-        res.status(500).send('Internal Server Error');
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).send(MessageConstants.INTERNAL_SERVER_ERROR);
       }
     },
 
@@ -189,7 +190,7 @@ module.exports = {
         });
       } catch (err) {
         console.log(err);
-        res.status(500).send('Internal Server Error');
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).send(MessageConstants.INTERNAL_SERVER_ERROR);
       }
     },
     
@@ -223,6 +224,14 @@ module.exports = {
     
         await updatedOrder.save();
 
+        const userId = updatedOrder.user_id
+        const message = `Order ${updatedOrder.order_id} is ${updatedOrder.status} by Team`
+        console.log(typeof Notifier.sendPushNotification);  // Should print 'function'
+
+        const Notification = await Notifier.sendPushNotification(userId, message);
+
+        console.log(Notification)
+
         if (!updatedOrder) {
           return res.status(404).json({ message: 'Order not found' });
         }
@@ -231,7 +240,7 @@ module.exports = {
         return res.json({ message: 'Status updated successfully', updatedOrder });
       } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).json({ error:MessageConstants.INTERNAL_SERVER_ERROR});
       }
     },
     
@@ -269,7 +278,7 @@ module.exports = {
         return res.json({ message: 'Payment Status updated successfully', updatedOrder });
       } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).json({ error:MessageConstants.INTERNAL_SERVER_ERROR});
       }
     },
 
@@ -301,7 +310,7 @@ module.exports = {
         return res.json({ message: 'Payment Status updated successfully', updatedOrder });
       } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).json({ error:MessageConstants.INTERNAL_SERVER_ERROR});
       }
     },
 
@@ -325,7 +334,7 @@ module.exports = {
         res.render('partials/invoice', { user,order, custom_css, options , error, deliveryman});
       } catch (err) {
         console.log(err);
-        res.status(500).send('Internal Server Error');
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).send(MessageConstants.INTERNAL_SERVER_ERROR);
       }
     },
 
@@ -346,7 +355,7 @@ module.exports = {
         res.render('admin/order/track', { user, order, custom_css, options, options2 , error, deliveryman});
       } catch (err) {
         console.log(err);
-        res.status(500).send('Internal Server Error');
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).send(MessageConstants.INTERNAL_SERVER_ERROR);
       }
     },
     
@@ -367,7 +376,7 @@ module.exports = {
         res.render('admin/order/track', { user, order, custom_css, options, options2 , error, deliveryman});
       } catch (err) {
         console.log(err);
-        res.status(500).send('Internal Server Error');
+        res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).send(MessageConstants.INTERNAL_SERVER_ERROR);
       }
     },
     

@@ -1,5 +1,5 @@
-const PushNotification = require('./send');
+const Notifier = require('./send.configuration');
 
 module.exports = {
-  PushNotification
+  Notifier
 };

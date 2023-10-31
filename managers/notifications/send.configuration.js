@@ -42,7 +42,6 @@ module.exports = {
               notification: {
                   body: message,
                   icon : 'myicon',//Default Icon
-                  sound : 'mySound',//Default sound
               },
             };
             console.log("Message --- ",pushMessage)
@@ -67,7 +66,7 @@ module.exports = {
       console.log(error);
     }
 
-  }
+  },
 }
 
 

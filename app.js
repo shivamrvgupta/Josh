@@ -11,7 +11,6 @@ const cookieParser = require('cookie-parser');
 const Mailer = require('./mailer/mailer.js')
 const routesWeb = require('./web');
 const routesApi = require('./api');
-const notify = require('./managers/notifications/send')
 const { AuthMiddleware } = require('./web/admin/middlewares');
 const { AuthController } = require('./web/admin/controllers');
 
@@ -26,7 +25,8 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/public',express.static("./src/public"));
 
-app.use(morgan(':method :url :status :user-agent - [:date[clf]] :response-time ms'));
+app.use(morgan(':remote-addr - :remote-user [:date[web]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'));
+
 app.use('/images', express.static(path.join(__dirname, './src/uploads')));
 
 

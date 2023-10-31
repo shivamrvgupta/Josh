@@ -5,7 +5,7 @@ POST http://localhost:3000/api/auth/customer/login
 Content-Type: application/json
 
 {
-    "phone" : "9820648212"
+    "phone" : "9870878040"
 }
 
 
@@ -16,8 +16,8 @@ POST http://localhost:3000/api/auth/customer/verify-otp
 Content-Type: application/json
 
 {
-    "phone" : "9820648212",
-    "otp" : "8067"
+    "phone" : "9870878040",
+    "otp" : "5795"
 }
 
 
@@ -26,19 +26,20 @@ POST http://127.0.0.1:3000/api/auth/customer/register
 Content-Type: application/json
 
 {
-    "first_name": "Tes",
-    "last_name": "TEst",
-    "email": "test@joshfuels.com",
+    "first_name": "Rutu",
+    "last_name": "Rao",
+    "email": "rutu@dispostable.com",
     "company": "TYS",
-    "phone": "9210129012",
-    "accept_term": "true"
+    "phone": "8928862287",
+    "accept_term": "true",
+    "gst_no": "2AAAA123H"
 }
 
 
 ### Get Profile
 GET http://127.0.0.1:3000/api/auth/customer/getProfile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTgzNTM5MDcsImV4cCI6MTY5ODk1ODcwN30.JjgYRDsr-k-HfVnNFzEKgK86aL8xPaIPSv6pGbMZpZY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 ### Update Profile
 POST http://127.0.0.1:3000/api/auth/customer/updateProfile
@@ -77,12 +78,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5M
 ### Get Address
 GET http://localhost:3000/api/auth/customer/get-address
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTgzNTM5MDcsImV4cCI6MTY5ODk1ODcwN30.JjgYRDsr-k-HfVnNFzEKgK86aL8xPaIPSv6pGbMZpZY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 ### Update Address
 POST http://localhost:3000/api/auth/customer/update-address
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTgzNTM5MDcsImV4cCI6MTY5ODk1ODcwN30.JjgYRDsr-k-HfVnNFzEKgK86aL8xPaIPSv6pGbMZpZY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 {
     "address_id" : "650191993bd8b22339022421",
@@ -98,7 +99,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5M
 ### Deleted Address 
 DELETE http://localhost:3000/api/auth/customer/delete-address
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTgzNTM5MDcsImV4cCI6MTY5ODk1ODcwN30.JjgYRDsr-k-HfVnNFzEKgK86aL8xPaIPSv6pGbMZpZY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 {
     "address_id" : "650191c73bd8b22339022427"
@@ -108,21 +109,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5M
 ### Add Device
 POST http://localhost:3000/api/auth/customer/add-device
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTgzNTM5MDcsImV4cCI6MTY5ODk1ODcwN30.JjgYRDsr-k-HfVnNFzEKgK86aL8xPaIPSv6pGbMZpZY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 {
-    "name" : "shivam's iPhone",
+    "name" : "Anil's iPhone",
     "type" : "iOS",
-    "version" : "17.0.1"
+    "version" : "16.6.8",
+    "fcm_token" : "ekwC42hSTm2WyC35ZYd75K:APA91bF9uhR9CcJOKZ5vhf3BFnA7Hc6JF_W5lL6e_AOxm0o6PxOND5OS-4sJLjeak0dKheY0NewbSc4d6tPw5jVV6JBfwEXemWwHXhpwqCccF0VZJ3Cppy0vPmsOawgEWca7UY7n8NJj"
 }
 
 ### Fetch data 
 Get http://localhost:3000/api/auth/customer/userdata
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTgzNTM5MDcsImV4cCI6MTY5ODk1ODcwN30.JjgYRDsr-k-HfVnNFzEKgK86aL8xPaIPSv6pGbMZpZY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 ### LogOut
 POST http://localhost:3000/api/auth/customer/logout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTI5MTcwMmMxM2Q4OThhNjk5M2QyMjkiLCJmaXJzdF9uYW1lIjoiQW5pbCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJyZXlhbnNoQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTgyMDY0ODIxMiIsImlzX3ByaXZpbGFnZWQiOmZhbHNlLCJpYXQiOjE2OTgzNTM5MDcsImV4cCI6MTY5ODk1ODcwN30.JjgYRDsr-k-HfVnNFzEKgK86aL8xPaIPSv6pGbMZpZY.eyJ1c2VySWQiOiI2NTFmYjNlODQxZWRlNjgxYzE2Y2Q3NTkiLCJmaXJzdF9uYW1lIjoiVGVzIiwibGFzdF9uYW1lIjoiVEVzdCIsImVtYWlsIjoidGVzdEBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI5MjEwMTI5MDEyIiwiaWF0IjoxNjk2NTc2NDg5LCJleHAiOjE2OTcxODEyODl9.CUa2Wi7sJKRuTp7NZVJ6kCN9Z3WgCQsR9FK5GoDunbg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg.eyJ1c2VySWQiOiI2NTFmYjNlODQxZWRlNjgxYzE2Y2Q3NTkiLCJmaXJzdF9uYW1lIjoiVGVzIiwibGFzdF9uYW1lIjoiVEVzdCIsImVtYWlsIjoidGVzdEBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI5MjEwMTI5MDEyIiwiaWF0IjoxNjk2NTc2NDg5LCJleHAiOjE2OTcxODEyODl9.CUa2Wi7sJKRuTp7NZVJ6kCN9Z3WgCQsR9FK5GoDunbg
 

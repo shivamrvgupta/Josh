@@ -10,5 +10,5 @@
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ag8sr%40joshfuels-1a062.iam.gserviceaccount.com",
   "universe_domain": "googleapis.com",
-  "SERVER_KEY": "AAAASA45_pc:APA91bGGyMFJNQy3pD2hc1_tQlHirrQUk_tRpZTWSxWg8NldHr8Tdd6wcCSHSL9BjYC2mMUTjDJRQyDHFApIw3mg3tVn7K8co5ZGFNtL2_nV8BPtgpkTB-u6x0x0Pn3Z24muewE9xAr_"
+  "SERVER_KEY": "AAAATC4mmaA:APA91bHqZ0blJn11wTOw6N2zP5OiO_s3NLQ54q3j46xjxT5o-XCfJ4PZqDNkXdh-n4qD6_y44-fyk21MsvT76Wx0wrq7ifSO6RyBty7FLy3iviw7oZu9aS_ezUdSLL63aIQM5ziOYGAj"
 }

@@ -3,6 +3,7 @@ const { Validator } = require('../../../managers/utils');
 const { Mailer } = require('../../../mailer');
 const fs = require('fs'); // Import the 'fs' module for file operations
 const models = require('../../../managers/models');
+const minify = require('html-minifier').minify;
 const pdf = require('html-pdf');  
 const ejs = require('ejs');
 const path = require("path"); 
@@ -424,6 +425,26 @@ module.exports = {
                     const newOrder = new models.BranchModel.Order(orderItem);
                     await newOrder.save();
 
+                    const order = await models.BranchModel.Order.findOne({order_id: orderItem.order_id}).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');
+
+                    const recipientEmail = "shivamrvgupta@gmail.com";
+                    const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
+                    const templateFilePath = path.join(__dirname, Mailer.invoiceEmail);
+
+                    // Read the email template file
+                    const emailTemplateContent = await promisify(fs.readFile)(templateFilePath, 'utf8');
+                    
+                    const renderedEmailContent = ejs.render(emailTemplateContent, { order , user, options });
+
+                    const format = { format: 'A4' };
+                    
+                    // Convert pdf.create to a promise-based function
+                    const generatePdf = (html, options) => new Promise((resolve, reject) => {
+                        pdf.create(html, options).toFile(`./src/invoices/${orderItem.order_id}-invoice.pdf`, (err, res) => {
+                        if (err) return reject(err);
+                        resolve(res);
+                        });
+                    });
                     
 
                     // Delete the cart after successfully adding the order
@@ -492,29 +513,18 @@ module.exports = {
                         deliveryInfo : deliveryManData
                     };
 
-                    const order = await models.BranchModel.Order.findOne({order_id: orderItem.order_id}).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');
+                    console.log("trouble --3 ")
 
-                    const recipientEmail = "shivamrvgupta@gmail.com";
-                    const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
-                    const templateFilePath = path.join(__dirname, Mailer.invoiceEmail);
-
-                    // Read the email template file
-                    const emailTemplateContent = await promisify(fs.readFile)(templateFilePath, 'utf8');
-                    
-                    const renderedEmailContent = ejs.render(emailTemplateContent, { order , user, options });
-
-                    const format = { format: 'Letter' };
-                    
-                    pdf.create(renderedEmailContent, format).toFile(`./src/invoices/${orderItem.order_id}-invoice.pdf`, (err, res) => {
-                        if (err) {
-                            console.log("trouble -- inside  if")
-                            console.log(err);
-                        } else {
-                            console.log('PDF Invoice created:', res.filename);
-                        }
+                    const minifiedHtml = minify(renderedEmailContent, {
+                        removeAttributeQuotes: true,
+                        collapseWhitespace: true,
+                        minifyJS: true,
+                        minifyCSS: true
                     });
 
-                    console.log("trouble --3 ")
+                    const pdfGeneration = await generatePdf(minifiedHtml, format);
+
+
                     const invoicePdf = `${orderItem.order_id}-invoice.pdf`
                     // Send the email and wait for it to complete
                     const emailResult = await Mailer.sendCustomMail(recipientEmail, subject, renderedEmailContent , invoicePdf);
