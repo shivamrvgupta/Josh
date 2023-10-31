@@ -81,6 +81,23 @@
                                                     <td><a href="/admin/customer/detail/<%= row.user_id.id%>"><%= row.user_id.first_name %></a></td>
 
                                                     <td><%= row.branch_id.name %></td>
+
+                                                    <td>
+                                                        <% if(row.is_delivery_man_assigned){ %>
+                                                            <div class="status-close" >
+                                                                <span style="background-color:rgba(0, 201, 219, .1);color: #00c9db;;">
+                                                                    <%= row.delivery_id.fname %> <%= row.delivery_id.lname %> 
+                                                                </span>
+                                                            </div>
+                                                        <% } else { %>
+                                                            <div class="status-danger">
+                                                                <span style="background-color:rgba(154,154,154,0.2);color:#9a9a9a;">
+                                                                    <%= row.delivery_man %>
+                                                                </span>
+                                                            </div>
+                                                        <% } %>
+                                                    </td>
+
                                                     <td>
                                                             <div class="<%= row.payment_status ? 'status-close' : 'status-danger' %>">
                                                                 <span><%= row.payment_status ? 'Paid' : 'Unpaid' %></span>
@@ -95,12 +112,6 @@
                                                             <li>
                                                                 <a href="/admin/orders/details/<%= row.id%>">
                                                                     <i class="ri-eye-line"></i>
-                                                                </a>
-                                                            </li>
-
-                                                            <li>
-                                                                <a href="/admin/order/update/<%= row.id%>">
-                                                                    <i class="ri-pencil-line"></i>
                                                                 </a>
                                                             </li>
 

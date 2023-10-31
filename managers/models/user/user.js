@@ -56,6 +56,10 @@ const jwt = require('jsonwebtoken')
         company: {
             type: String,
         },
+        gst_no: {
+            type: String,
+            default : "22AAAAA0000A1Z5"
+        },
         is_mobile_verified: {
             type: Boolean,
             default: false,

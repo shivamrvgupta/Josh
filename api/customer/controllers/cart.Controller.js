@@ -29,7 +29,7 @@ module.exports = {
       const cart = await models.BranchModel.Cart.find({ user_id: session.userId });
       const user = await models.UserModel.User.find({ _id: session.userId })
       const cartCount = cart.length;
-      console.log(cart);
+      console.log(user);
   
       if (!cart || cart.length === 0) {
         console.log(
@@ -58,13 +58,15 @@ module.exports = {
                 _id: product.product_id,
               });
               if (productInfo) {
-                if(user.is_privilaged == true ){
+                console.log(user[0].is_privilaged == true)
+                if(user[0].is_privilaged == true ){
                   return {
                     product_id: product.product_id,
                     product_name: productInfo[0].name,
                     product_img: productInfo[0].image,
                     quantity: product.quantity,
                     price: product.price,
+                    branch_price: productInfo[0].branch_price,
                     customer_price : user.fixed_price,
                     _id: product._id,
                   };
@@ -194,10 +196,11 @@ module.exports = {
             product_id: cartData.product_id,
             quantity: cartData.quantity,
             price: userInfo.is_privilaged ? userInfo.fixed_price : productInfo.branch_price,
-            customer_price: productInfo.branch_price,
           };
-    
+          
           console.log(product_detail);
+          console.log(userInfo);
+          console.log(userInfo.is_privilaged);
     
           const existingCart = await models.BranchModel.Cart.findOne({
             user_id: cartData.user_id,

@@ -66,12 +66,14 @@ module.exports = {
         })
       }
 
+      console.log(user_id);
+
       // Fetch user's city based on the sessions user_id
       const user_city = await models.UserModel.Address.findOne({ user_id: user_id });
 
       const user = await models.UserModel.User.findOne({ _id: user_id})
 
-      console.log(user_city.city);
+      console.log(user_city);
 
       const branchesInCity = await models.BranchModel.Branch.find({ city: user_city.city });
 

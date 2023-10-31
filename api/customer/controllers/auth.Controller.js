@@ -212,6 +212,7 @@ module.exports = {
         password: await bcrypt.hash('1234@user', 10),
         phone: req.body.phone,
         company: req.body.company,
+        gst: req.body.gst_no,
         usertype: 'Customer',
         accept_term: req.body.accept_term,
       };
@@ -229,6 +230,9 @@ module.exports = {
         company: {
           presence: { allowEmpty: false },
           length: { minimum: 3, maximum: 100 },
+        },
+        gst: {
+          presence: { allowEmpty: false },
         },
         accept_term: {
           presence: { allowEmpty: false },
@@ -268,10 +272,13 @@ module.exports = {
 
 
       const responseData = {
+        profile: savedUser.profile,
         first_name: savedUser.first_name,
         last_name: savedUser.last_name,
         email: savedUser.email,
         phone_number: savedUser.phone,
+        company: savedUser.company,
+        gst_no: savedUser.gst_no,
       };
 
       const newToken = AuthMiddleware.generateAccessToken(savedUser)
@@ -311,7 +318,7 @@ module.exports = {
       
       const addDevice = {
         user_id: user_id,
-        token: uuidv4(),
+        fcm_token: req.body.fcm_token,
         name: req.body.name,
         type: req.body.type,
         version : req.body.version 
@@ -321,6 +328,9 @@ module.exports = {
         name: {
           presence: { allowEmpty: false },
           length: { minimum: 4, maximum: 50 },
+        },
+        fcm_token: {
+          presence: { allowEmpty: false },
         },
         type: {
           presence: { allowEmpty: false },
@@ -528,6 +538,7 @@ module.exports = {
         company: user.company,
         email: user.email,
         phone_number: user.phone,
+        gst_no: user.gst_no,
       };
 
       const message = "Hello User"
@@ -569,6 +580,7 @@ module.exports = {
         email: req.body.email,
         phone_number: req.body.phone,
         company: req.body.company,
+        gst_no: req.body.gst_no,
       };
   
       // Fetch the full data of user
@@ -586,15 +598,9 @@ module.exports = {
       user.email = userData.email || user.email;
       user.phone = userData.phone || user.phone;
       user.company = userData.company || user.company;
+      user.gst_no = userData.gst_no || user.gst_no;
   
       await user.save();
-  
-      // Update the session with the new user data
-      session.first_name = user.first_name;
-      session.last_name = user.last_name;
-      session.email = user.email;
-      session.phone_number = user.phone;
-      session.company = user.company;
   
       const responseData = {
         first_name: user.first_name,
@@ -610,6 +616,7 @@ module.exports = {
         message: 'User data updated successfully',
         data: responseData,
       });
+      
     } catch (error) {
       console.error(error);
       return res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).json({

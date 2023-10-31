@@ -19,9 +19,6 @@ Content-Type: application/json
     "otp" : "2558"
 }
 
-
-
-
 ### Registration
 POST http://127.0.0.1:3000api/auth/customer/register
 Content-Type: application/json
@@ -111,6 +108,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 
 {
     "name" : "shivam's iPhone",
+    "fcm_token" : "#12312412412412424124124" , 
     "type" : "iOS",
     "version" : "17.0.1"
 }
@@ -272,3 +270,79 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 POST http://35.154.189.224/api/auth/customer/send-email
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM5NjMxNzhmNWJmMTI2Njc3YzI0MmEiLCJmaXJzdF9uYW1lIjoiU2hpdmFtIiwibGFzdF9uYW1lIjoiR3VwdGEiLCJlbWFpbCI6ImFkbWluQGpvc2hmdWVscy5jb20iLCJwaG9uZSI6Ijg4NTA2NjQxOTEiLCJpc19wcml2aWxhZ2VkIjpmYWxzZSwiaWF0IjoxNjk3NTMxNjgwLCJleHAiOjE2OTgxMzY0ODB9.8g1-dYeG8_ZewetPXPH_JdPh-TYUnumUUvWxhomqVuM
+
+
+
+##### Delivery Mannn #######
+
+###
+    # DeliveryMan Login
+###
+POST http://35.154.189.224/api/auth/deliveryman/login
+Content-Type: application/json
+
+{
+    "email": "deliveryman1@joshfuels.com",
+    "password": "1234@user"
+}
+
+### Get Profile
+GET http://35.154.189.224/api/auth/deliveryman/getProfile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgwMDg0LCJleHAiOjE2OTg3ODQ4ODR9.VAiaProJbqE338Hkegzq6LtG7Q8AJCSnAPrNgmUiu64
+
+### Get Profile
+GET http://35.154.189.224/api/auth/deliveryman/userdata
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgwMDg0LCJleHAiOjE2OTg3ODQ4ODR9.VAiaProJbqE338Hkegzq6LtG7Q8AJCSnAPrNgmUiu64
+
+###
+    # Get order 
+###
+GET http://35.154.189.224/api/auth/deliveryman/order/get
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgwMDg0LCJleHAiOjE2OTg3ODQ4ODR9.VAiaProJbqE338Hkegzq6LtG7Q8AJCSnAPrNgmUiu64
+
+###
+    # Get Single order 
+###
+GET http://35.154.189.224/api/auth/deliveryman/order/get-order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgwMDg0LCJleHAiOjE2OTg3ODQ4ODR9.VAiaProJbqE338Hkegzq6LtG7Q8AJCSnAPrNgmUiu64
+
+{
+    "order_id" : "100009"
+}
+
+###
+    # Get Previous order 
+###
+GET http://35.154.189.224/api/auth/deliveryman/order/previous-order
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgyNjA0LCJleHAiOjE2OTg3ODc0MDR9.WU77t9vsubQ61oGYOQf0vBJZQSX8W0p3dPF-ofQpaw4
+
+
+###
+    # Update Delivery Status 
+###
+POST http://35.154.189.224/api/auth/deliveryman/order/update-status
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgyNjA0LCJleHAiOjE2OTg3ODc0MDR9.WU77t9vsubQ61oGYOQf0vBJZQSX8W0p3dPF-ofQpaw4
+
+{
+    "order_id": "100009",
+    "status" : "Confirmed"
+}
+
+
+###
+    # Update Payment Status 
+###
+POST http://35.154.189.224/api/auth/deliveryman/order/update-payment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEwM2NmMDI4MTc1ZjEwMDA1Yzk5MDIiLCJwcm9maWxlIjoiZGVsaXZlcnltYW5faW1hZ2UtMTY5NTU2Mjk5MjcwNy5qcGVnIiwiZmlyc3RfbmFtZSI6IlN1bWl0IiwibGFzdF9uYW1lIjoiU2luZ2giLCJlbWFpbCI6ImRlbGl2ZXJ5bWFuMUBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI4ODU5NTgxMjMzIiwiaWF0IjoxNjk4MTgyNjA0LCJleHAiOjE2OTg3ODc0MDR9.WU77t9vsubQ61oGYOQf0vBJZQSX8W0p3dPF-ofQpaw4
+
+{
+    "order_id": "100009",
+    "status" : "Paid"
+}

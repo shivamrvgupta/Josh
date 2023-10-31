@@ -21,7 +21,6 @@ const tokenBlacklist = new Set();
 
 
 module.exports = {
-
   // Get Product List
     list : async (req, res) => {
         try {
@@ -142,7 +141,6 @@ module.exports = {
         }
     },
 
-
   // Update Status
     updateStatus : async (req, res) => {
         try {
@@ -244,34 +242,34 @@ module.exports = {
           }
     },
 
-  // Delete Category
-  delete : async (req, res) => {
-    try {
-      const branchId = req.params.branchId;
-      console.log("Deleting branch with ID:", branchId);
+    // Delete Category
+    delete : async (req, res) => {
+      try {
+        const branchId = req.params.branchId;
+        console.log("Deleting branch with ID:", branchId);
+      
+        // Find and delete the product from the database
+        const deletedBranch = await models.BranchModel.Branch.findOneAndDelete({ _id: branchId });
     
-      // Find and delete the product from the database
-      const deletedBranch = await models.BranchModel.Branch.findOneAndDelete({ _id: branchId });
-  
-      if (!deletedBranch) {
-        // product not found in the database
-        throw new Error('${} not found.');
-      }
-  
-      if (deletedBranch.image) {
-        ImgServices.deleteImageFile(deletedBranch.image);
-        console.log("Deleted Image File", deletedBranch.image );
-      }
+        if (!deletedBranch) {
+          // product not found in the database
+          throw new Error('${} not found.');
+        }
+    
+        if (deletedBranch.image) {
+          ImgServices.deleteImageFile(deletedBranch.image);
+          console.log("Deleted Image File", deletedBranch.image );
+        }
 
-      console.log(`${deletedBranch.name} deleted successfully`);
-  
-      res.status(200).json({ message: `${deletedBranch.name} deleted successfully` });
-    } catch (err) {
-      console.log(`There is an issue while deleting the ${deletedBranch.name}.`);
-      console.log(err.message);
-      res.status(400).send(err.message);
+        console.log(`${deletedBranch.name} deleted successfully`);
+    
+        res.status(200).json({ message: `${deletedBranch.name} deleted successfully` });
+      } catch (err) {
+        console.log(`There is an issue while deleting the ${deletedBranch.name}.`);
+        console.log(err.message);
+        res.status(400).send(err.message);
+      }
     }
-  }
 }
 
 

@@ -1,8 +1,16 @@
 const { MessageConstants, StatusCodesConstants } = require('../constants');
 const { Validator } = require('../../../managers/utils');
-const { Mailer } = require('../../../mailer')
+const { Mailer } = require('../../../mailer');
+const fs = require('fs'); // Import the 'fs' module for file operations
 const models = require('../../../managers/models');
-  
+const pdf = require('html-pdf');  
+const ejs = require('ejs');
+const path = require("path"); 
+const { promisify } = require('util');  
+const options = { day: '2-digit', month: 'short', year: 'numeric' };
+const options2 = { timeZone: 'UTC', };
+
+
 module.exports = {
     // Get Order Data
         orderList: async (req, res) => {
@@ -257,10 +265,10 @@ module.exports = {
     // Add Order Data
         addOrder : async (req, res) => {
             try {
-                const session = req.user;
-                user_id = session.userId;
+                const user = req.user;
+                user_id = user.userId;
     
-                console.log(`User ${session.first_name} Fetching Order Data`)
+                console.log(`User ${user.first_name} Fetching Order Data`)
     
                 if(!user_id){
                     return res.status(StatusCodesConstants.ACCESS_DENIED).json({
@@ -379,7 +387,7 @@ module.exports = {
                     }
 
                     const existingOrder = await models.BranchModel.Order.findOne({
-                        user_id: session.userId,
+                        user_id: user.userId,
                         branch_id: cartInfo.branch_id,
                         product_items: { $eq: cartInfo.product_items }, // Compare the product_items array
                         status: "Pending",
@@ -398,7 +406,7 @@ module.exports = {
 
                     const orderItem = {
                         order_id : nextOrderId,
-                        user_id : session.userId,
+                        user_id : user.userId,
                         branch_id : cartInfo.branch_id,    
                         product_items : cartInfo.product_items,
                         address_id: orderData.address_id, 
@@ -416,10 +424,7 @@ module.exports = {
                     const newOrder = new models.BranchModel.Order(orderItem);
                     await newOrder.save();
 
-                    const recipientEmail = session.email;
-                    const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
-                    const recipientName = session.first_name +  session.last_name; 
-                    const templateFilePath = path.join(__dirname, Mailer.verifyEmail);
+                    
 
                     // Delete the cart after successfully adding the order
                     await models.BranchModel.Cart.deleteOne({ _id: orderData.cart_id });
@@ -431,7 +436,7 @@ module.exports = {
                     const deliveryManData = newOrder.is_delivery_man_assigned
                     ? {
                         deliveryMan_id: deliveryInfo._id,
-                        deliveryMan_name: deliveryInfo.name,
+                        deliveryMan_name: deliveryInfo.fname + deliveryInfo.lname ,
                     }
                     : {
                         deliveryMan_name: orderData.delivery_man,
@@ -465,10 +470,10 @@ module.exports = {
                     };
     
                     const userData = {
-                        first_name: session.first_name,
-                        last_name: session.last_name,
-                        phone: session.phone,
-                        email: session.email,
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        phone: user.phone,
+                        email: user.email,
                     };
     
                     const branchData = {
@@ -487,9 +492,34 @@ module.exports = {
                         deliveryInfo : deliveryManData
                     };
 
+                    const order = await models.BranchModel.Order.findOne({order_id: orderItem.order_id}).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');
 
+                    const recipientEmail = "shivamrvgupta@gmail.com";
+                    const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
+                    const templateFilePath = path.join(__dirname, Mailer.invoiceEmail);
 
-                    console.log(`User ${session.first_name} ${MessageConstants.ORDER_ADD_SUCCESSFULLY} and ${orderData.cart_id} Deleted SuccessFully`)
+                    // Read the email template file
+                    const emailTemplateContent = await promisify(fs.readFile)(templateFilePath, 'utf8');
+                    
+                    const renderedEmailContent = ejs.render(emailTemplateContent, { order , user, options });
+
+                    const format = { format: 'Letter' };
+                    
+                    pdf.create(renderedEmailContent, format).toFile(`./src/invoices/${orderItem.order_id}-invoice.pdf`, (err, res) => {
+                        if (err) {
+                            console.log("trouble -- inside  if")
+                            console.log(err);
+                        } else {
+                            console.log('PDF Invoice created:', res.filename);
+                        }
+                    });
+
+                    console.log("trouble --3 ")
+                    const invoicePdf = `${orderItem.order_id}-invoice.pdf`
+                    // Send the email and wait for it to complete
+                    const emailResult = await Mailer.sendCustomMail(recipientEmail, subject, renderedEmailContent , invoicePdf);
+
+                    console.log(`User ${user.first_name} ${MessageConstants.ORDER_ADD_SUCCESSFULLY} and ${orderData.cart_id} Deleted SuccessFully`)
                     return res.status(StatusCodesConstants.SUCCESS).json({
                         status: true,
                         status_code: StatusCodesConstants.SUCCESS,

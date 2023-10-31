@@ -308,7 +308,7 @@ module.exports = {
     getInvoice : async (req,res) => {
       try {
         const orderId = req.params.id;
-        const order = await models.BranchModel.Order.findById(orderId).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');;
+        const order = await models.BranchModel.Order.findById(orderId).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');
         const deliveryman = await models.UserModel.DeliveryMan.find();
         const user = req.user;
         if (!user) {
