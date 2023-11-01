@@ -9,6 +9,8 @@ module.exports = {
                 // Extract user session information
                 const session = req.user;
                 const user_id = session.userId;
+                const page = req.query.page ? parseInt(req.query.page) : 0; // Start from page 0
+                const perPage = req.query.perPage ? parseInt(req.query.perPage) : 10; // Items per page
         
                 // Check if the user is logged in
                 if (!user_id) {
@@ -23,7 +25,10 @@ module.exports = {
                 // Query the database to fetch orders for the user
                 const orders = await models.BranchModel.Order.find({
                     delivery_id: user_id,
-                }).sort({ updated_date: -1 });
+                })
+                .sort({ updated_date: -1 })
+                .skip(page * perPage) // Calculate the skip based on the current page
+                .limit(perPage); // Limit the number of results per page;
 
         
                 // Check if any orders were found
@@ -276,6 +281,9 @@ module.exports = {
                 const session = req.user;
                 const user_id = session.userId;
         
+                const page = req.query.page ? parseInt(req.query.page) : 0; // Start from page 0
+                const perPage = req.query.perPage ? parseInt(req.query.perPage) : 10; // Items per page
+
                 // Check if the user is logged in
                 if (!user_id) {
                     return res.status(StatusCodesConstants.ACCESS_DENIED).json({
@@ -290,7 +298,9 @@ module.exports = {
                 const orders = await models.BranchModel.Order.find({
                     delivery_id: user_id,
                     status: { $in: ["Delivered", "Cancelled"] },
-                }).sort({ updated_date: -1 });                
+                }).sort({ updated_date: -1 })
+                .skip(page * perPage) // Calculate the skip based on the current page
+                .limit(perPage); // Limit the number of results per page                
 
         
                 // Check if any orders were found

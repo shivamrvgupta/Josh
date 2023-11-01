@@ -31,7 +31,7 @@ module.exports = {
         const productCount = product.length;
     
         if (!user) {
-          return res.redirect('/admin/auth/login');
+          return res.redirect('/branch/auth/login');
         }
 
         const error = "Products list"
@@ -90,19 +90,19 @@ module.exports = {
         const user = req.user;
   
         if (!user) {
-          return res.redirect('/admin/auth/login');
+          return res.redirect('/branch/auth/login');
         }
   
         const error = `Update ${product.name}`
 
-        res.render('admin/products/update_product', {
+        res.render('branch/products/update_product', {
             user,
             product,
             error
         });
     } catch (error) {
         console.error('Error fetching data for update:', error);
-        res.redirect('/admin/product/lists'); // Redirect to a suitable page after error
+        res.redirect('/branch/product/lists'); // Redirect to a suitable page after error
     }
     },
 
@@ -112,7 +112,7 @@ module.exports = {
         const productId = req.params.productId;
         console.log("hey i am updateing ")
         // Collect data from the form
-        const { name, description, price, tax, tax_type, discount, discount_type, category, selectedAddons, sub_category,available_time_starts, available_time_ends } = req.body;
+        const { name, description, price, tax, tax_type, discount, discount_type, category, sub_category ,available_time_starts, available_time_ends, branch_price } = req.body;
     
 
          // Find the product by its ID
@@ -133,6 +133,7 @@ module.exports = {
         productToUpdate.name = name;
         productToUpdate.description = description;
         productToUpdate.price = price;
+        productToUpdate.branch_price = branch_price;
         productToUpdate.tax = tax;
         productToUpdate.tax_type = tax_type;
         productToUpdate.discount = discount;
@@ -145,7 +146,7 @@ module.exports = {
         // Save the updated product to the database
         await productToUpdate.save();
     
-        res.redirect('/admin/product/lists'); // Redirect to a suitable page after successful update
+        res.redirect('/branch/product/lists'); // Redirect to a suitable page after successful update
       } catch (error) {
         console.error('Error updating product:', error);
         res.status(500).send('Internal Server Error');

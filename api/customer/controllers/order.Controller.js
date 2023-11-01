@@ -10,17 +10,18 @@ const path = require("path");
 const { promisify } = require('util');  
 const options = { day: '2-digit', month: 'short', year: 'numeric' };
 const options2 = { timeZone: 'UTC', };
+const phantomjs = require('phantomjs-prebuilt')
 
 
 module.exports = {
     // Get Order Data
         orderList: async (req, res) => {
             try {
-                // Extract user session information
                 const session = req.user;
                 const user_id = session.userId;
+                const page = req.query.page ? parseInt(req.query.page) : 0; // Start from page 0
+                const perPage = req.query.perPage ? parseInt(req.query.perPage) : 10; // Items per page
         
-                // Check if the user is logged in
                 if (!user_id) {
                     return res.status(StatusCodesConstants.ACCESS_DENIED).json({
                         status: false,
@@ -29,12 +30,13 @@ module.exports = {
                     });
                 }
         
-                // Query the database to fetch orders for the user
                 const orders = await models.BranchModel.Order.find({
                     user_id: user_id,
-                }).sort({ updated_date: -1 });
+                })
+                .sort({ updated_date: -1 })
+                .skip(page * perPage) // Calculate the skip based on the current page
+                .limit(perPage); // Limit the number of results per page
         
-                // Check if any orders were found
                 if (orders && orders.length > 0) {
                     const populatedOrder = [];
         
@@ -110,7 +112,6 @@ module.exports = {
                         populatedOrder.push(orderItemData);
                     }
         
-                    console.log(`User ${session.first_name} ${MessageConstants.ORDER_FETCHED_SUCCESSFULLY}`);
                     return res.status(StatusCodesConstants.SUCCESS).json({
                         status: true,
                         status_code: StatusCodesConstants.SUCCESS,
@@ -121,7 +122,6 @@ module.exports = {
                     });
                 } else {
                     // No orders found for the user
-                    console.log("No orders found");
                     return res.status(StatusCodesConstants.SUCCESS).json({
                         status: true,
                         status_code: StatusCodesConstants.SUCCESS,
@@ -136,7 +136,7 @@ module.exports = {
                 return res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).json({ error: MessageConstants.INTERNAL_SERVER_ERROR });
             }
         },
-    
+        
     // Get Order Data
         perOrder: async (req, res) => {
             try {
@@ -427,7 +427,7 @@ module.exports = {
 
                     const order = await models.BranchModel.Order.findOne({order_id: orderItem.order_id}).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');
 
-                    const recipientEmail = "shivamrvgupta@gmail.com";
+                    const recipientEmail = user.email;
                     const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
                     const templateFilePath = path.join(__dirname, Mailer.invoiceEmail);
 
@@ -438,9 +438,11 @@ module.exports = {
 
                     const format = { format: 'A4' };
                     
+                    const phantom = phantomjs
+
                     // Convert pdf.create to a promise-based function
-                    const generatePdf = (html, options) => new Promise((resolve, reject) => {
-                        pdf.create(html, options).toFile(`./src/invoices/${orderItem.order_id}-invoice.pdf`, (err, res) => {
+                    const generatePdf = (html, options, phantom) => new Promise((resolve, reject) => {
+                        pdf.create(html, options, {phantom}).toFile(`./src/invoices/${orderItem.order_id}-invoice.pdf`, (err, res) => {
                         if (err) return reject(err);
                         resolve(res);
                         });

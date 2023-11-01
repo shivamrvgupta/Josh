@@ -93,9 +93,9 @@ const productSchema = new mongoose.Schema({
     required: false,
     set: function(value) {
       return parseFloat(value).toFixed(2);
-    }
+    },
+    default: "0.00"
   }
-
 });
 
 
