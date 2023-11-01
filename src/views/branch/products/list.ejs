@@ -36,7 +36,7 @@
                                                         <td>
                                                             <div class="table-image">
                                                                 <% if( row.image ){ %>   
-                                                                    <img src="" class="img-fluid" onerror="this.src='/images/<%= row.image %>';" alt="">
+                                                                    <img src="/images/<%= row.image %>" class="img-fluid" onerror="this.src='/images/default.jpg'" alt="">
                                                                 
                                                                 <% }else{ %>  
                                                                     <img src="/images/default.jpg" class="img-fluid" alt="">
@@ -64,13 +64,6 @@
                                                                 <li>
                                                                     <a href="/branch/product/update/<%= row._id %>">
                                                                         <i class="ri-pencil-line"></i>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="/branch/product/delete/<%= row._id %>" data-bs-toggle="modal"
-                                                                        data-bs-target="#exampleModalToggle">
-                                                                        <i class="ri-delete-bin-line"></i>
                                                                     </a>
                                                                 </li>
                                                             </ul>
@@ -138,7 +131,7 @@
                 function updateStatus(productId) {
                     $.ajax({
                         type: "POST",
-                        url: "/admin/product/update-status",
+                        url: "/branch/product/update-status",
                         data: { productId: productId },
                         success: function (response) {
                             // Update the status text

@@ -26,28 +26,21 @@
                                         </div>
 
                                         <div class="mb-4 row align-items-center">
-                                            <label
-                                                class="col-sm-3 col-form-label form-label-title">Category</label>
+                                            <label class="form-label-title col-sm-3 mb-0">Category</label>
                                             <div class="col-sm-9">
-                                                <select class="js-example-basic-single w-100" name="category">
-                                                    <option disabled>Category</option>
-                                                    <% categories.forEach(category => { %>
-                                                        <option value="<%= category._id %>" <%= product.category.toString() === category._id.toString() ? 'selected' : '' %>><%= category.name %></option>
-                                                    <% }); %>
-                                                </select>
+                                                <input class="form-control" type="text"
+                                                    placeholder="Product Name" name="name" value="<%= product.name %>">
                                             </div>
                                         </div>
 
                                         <div class="mb-4 row align-items-center">
-                                            <label
-                                                class="col-sm-3 col-form-label form-label-title">Subcategory</label>
+                                            
                                             <div class="col-sm-9">
-                                                <select class="js-example-basic-single w-100" name="sub_category">
-                                                    <option disabled>Subcategory</option>
-                                                    <option value="Petrol">Petrol</option>
-                                                    <option value="Diesel">Diesel</option>
-                                                    <option value="White Petrol">White petrol</option>
-                                                </select>
+                                                <label class="col-sm-3 col-form-label form-label-title">Subcategory</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text"
+                                                        placeholder="Product Name" name="name" value="<%= product.name %>">
+                                                </div>
                                             </div>
                                         </div>
 

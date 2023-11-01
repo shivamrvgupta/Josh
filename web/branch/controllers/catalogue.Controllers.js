@@ -79,68 +79,6 @@ module.exports = {
           }
     },
 
-  // Add Category List
-    postAdd: async (req, res) => {
-      const imageFiles = req.files['image'];
-      const imgdata = {
-        image: imageFiles,
-      }
-      try {
-        // Collect data from the form
-        const { name, description, price, tax, tax_type, discount, discount_type, branches, category, sub_category, available_time_starts, available_time_ends, status } = req.body;
-
-        if (!imageFiles || imageFiles.length === 0) {
-          throw new Error("Image file is missing");
-        }
-        const imageFilename = imageFiles[0].filename;
-        console.log('Image Filename:', imageFilename);
-        console.log("branches --",branches);
-        const selectedBranches = branches.map(branchId => ({
-          branch_id: branchId,
-          status: false // You can set the status as needed
-        }));
-        console.log("parsed --", selectedBranches);
-
-        // Create a new product instance
-        newProduct = new models.ProductModel.Product({
-          token: uuidv4(),
-          name,
-          description,
-          price,
-          tax,
-          tax_type,
-          discount,
-          discount_type,
-          image: imageFilename,
-          category,
-          sub_category,
-          available_time_starts,
-          available_time_ends,
-          status,
-          branch_status: selectedBranches,
-        });
-
-        console.log("Data stored in Status --- ", newProduct.branch_status);
-        // Save the new product to the database
-        const savedProduct = await newProduct.save();
-
-        console.log('Product stored successfully');
-        res.redirect('/admin/product/lists'); // Redirect to a suitable page after successful submission
-      } catch (error) {
-        console.error('Error adding product:', error);
-
-        // Delete the image file if an error occurs
-        if (imgdata.image && imgdata.image.length > 0) {
-          const imageFilenameToDelete = imgdata.image[0].filename;
-          ImgServices.deleteImageFile(imageFilenameToDelete);
-          console.log(`Deleted image file: ${imageFilenameToDelete}`);
-        }
-
-        res.redirect('/admin/product/add?error=Please Check the Values Again'); // Redirect on error
-      }
-    },
-
-
   // Update Status
     updateStatus : async (req, res) => {
       try {
@@ -183,6 +121,8 @@ module.exports = {
             'branch': user.userId,
             'main': product.id,
           });
+
+          console.log(existingBranchProduct)
         
 
           console.log(
@@ -195,7 +135,7 @@ module.exports = {
           if (!existingBranchProduct) {
             console.log("It enter in Existing")
             const branchProduct = new models.BranchModel.BranchProduct({
-              branch_id: user.userId, // This should now be correctly saved
+              branch: user.userId, // This should now be correctly saved
               main: product._id,
               token: uuidv4(),
               name: product.name,
