@@ -10,7 +10,6 @@ const path = require("path");
 const { promisify } = require('util');  
 const options = { day: '2-digit', month: 'short', year: 'numeric' };
 const options2 = { timeZone: 'UTC', };
-const phantomjs = require('phantomjs-prebuilt')
 
 
 module.exports = {
