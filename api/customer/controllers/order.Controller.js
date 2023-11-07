@@ -436,17 +436,17 @@ module.exports = {
                     
                     const renderedEmailContent = ejs.render(emailTemplateContent, { order , user, options });
 
-                    const format = { format: 'A4' };
+                    // const format = { format: 'A4' };
                     
-                    const phantom = phantomjs
+                    // const phantom = phantomjs
 
                     // Convert pdf.create to a promise-based function
-                    const generatePdf = (html, options, phantom) => new Promise((resolve, reject) => {
-                        pdf.create(html, options, {phantom}).toFile(`./src/invoices/${orderItem.order_id}-invoice.pdf`, (err, res) => {
-                        if (err) return reject(err);
-                        resolve(res);
-                        });
-                    });
+                    // const generatePdf = (html, options, phantom) => new Promise((resolve, reject) => {
+                    //     pdf.create(html, options, {phantom}).toFile(`./src/invoices/${orderItem.order_id}-invoice.pdf`, (err, res) => {
+                    //     if (err) return reject(err);
+                    //     resolve(res);
+                    //     });
+                    // });
                     
 
                     // Delete the cart after successfully adding the order
@@ -524,12 +524,12 @@ module.exports = {
                         minifyCSS: true
                     });
 
-                    const pdfGeneration = await generatePdf(minifiedHtml, format);
+                    // const pdfGeneration = await generatePdf(minifiedHtml, format);
 
 
                     const invoicePdf = `${orderItem.order_id}-invoice.pdf`
                     // Send the email and wait for it to complete
-                    const emailResult = await Mailer.sendCustomMail(recipientEmail, subject, renderedEmailContent , invoicePdf);
+                    const emailResult = await Mailer.sendCustomMail(recipientEmail, subject, renderedEmailContent );
 
                     console.log(`User ${user.first_name} ${MessageConstants.ORDER_ADD_SUCCESSFULLY} and ${orderData.cart_id} Deleted SuccessFully`)
                     return res.status(StatusCodesConstants.SUCCESS).json({

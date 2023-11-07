@@ -3,100 +3,187 @@
 <head>
     <title>Josh | Invoice</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
+    <section id="printableArea">
+        <div class="container">
 
-<table>
-    <tr>
-        <td colspan="4">
-            <strong>Jetway Oil & Fuel Services Home PvtLtd(Karnataka)</strong><br>
-            Jaitammal, Plot No. 263/3, Sambhadev Nagar, Piranwadi, Belagavi, Karnataka<br>
-            GSTIN/UIN: 29AAFCJ2498F1Z8<br>
-            State Name: Karnataka, Code: 29
-            </td>
-            <td><strong>Invoice No.</strong><br> BEL/001</td>
-            <td><strong>Dated</strong><br> 18-Oct-23</td>
-        </td>
-        <td>Invoice No.<br>BEL/001</td>
-        <td>Dated<br>18-Oct-23</td>
-    </tr>
-    <tr>
-        <td colspan="2">Consignee (Ship to)</td>
-        <td colspan="2">Vega Auto Accessories Pvt Ltd</td>
-        <td>Buyer's Order No.<br></td>
-        <td>Dated</td>
-    </tr>
-    <tr>
-        <td colspan="2">Plot No. 12-B, Sy. No. 342 BEMCIEL Industrial, Estate, Udyambag, Belagavi, Karnataka-590008</td>
-        <td colspan="2">GSTIN/UIN: 29AAACV6543N1ZO<br>State Name: Karnataka, Code: 29</td>
-        <td>Dispatch Doc No.</td>
-        <td>Delivery Note Date</td>
-    </tr>
-    <tr>
-        <td colspan="2">Buyer (Bill to)</td>
-        <td colspan="2">Vega Auto Accessories Pvt Ltd</td>
-        <td>Dispatched through</td>
-        <td>Destination</td>
-    </tr>
-    <tr>
-        <td colspan="2">Plot No. 12-B, Sy. No. 342 BEMCIEL Industrial, Estate, Udyambag, Belagavi, Karnataka-590008</td>
-        <td colspan="2">GSTIN/UIN: 29AAACV6543N1ZO<br>State Name: Karnataka, Code: 29</td>
-        <td colspan="2">Terms of Delivery</td>
-    </tr>
-    <tr>
-        <td>Description of Goods</td>
-        <td>HSN/SAC</td>
-        <td>Quantity<br>1,985.05 Ltr</td>
-        <td>Rate per<br>87.76 Ltr</td>
-        <td>Amount<br>1,74,207.99</td>
-        <td>Discount<br>(-)1,310.13</td>
-    </tr>
-    <tr>
-        <td colspan="5">Total</td>
-        <td>1,72,897.86</td>
-    </tr>
-    <tr>
-        <td colspan="6">
-            Amount Chargeable (in words)<br>
-            INR One Lakh Seventy Two Thousand Eight Hundred Ninety Seven and Eighty Six paise Only
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            Declaration<br>
-            1.We declare that this Invoice shows the Actual Price of the Goods described and that all Particulars are True and Correct.<br>
-            2. Bills Strictly to be paid Against the Delivery. Prosecution under MSME Act 2006 will apply on Unpaid Bills.<br>
-            3. Interest will be charged as per MSME ACT 2006 terms & conditions.<br>
-            4. No Claim or Complaint Shall be Entertained by us after the Goods are Delivered.
-        </td>
-        <td colspan="3">
-            Company's Bank Details<br>
-            Jetway Oil & Fuel Services Home PvtLtd(Karnataka)<br>
-            Bank Name: Indian Overseas Bank<br>
-            A/C No. 19710200000481<br>
-            Branch & IFS Code: Serula & ICIC0001247<br>
-            for Jetway Oil & Fuel Service<br>
-            <i>Authorised Signatory</i>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            Customer's Seal and Signature
-        </td>
-        
-    </tr>
-</table>
-<br>
-<center>THANKS FOR DOING BUSINESS WITH US</center>
+            <h2><center>Invoice</center></h2>
+            <table style="border-collapse: collapse;width: 100%;">
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" rowspan="2" colspan="2">
+                        <strong><%= order.branch_id.name %> (<%= order.branch_id.state %>)</strong><br>
+                        <%= order.branch_id.address1 %> <br> <%= order.branch_id.address2 %><br>
+                        GSTIN/UIN: 29AAFCJ2498F1Z8<br>
+                        State Name: <%= order.branch_id.state %>, Code: 29
+                    </td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Invoice No. <strong><br> BEL/001</strong></td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Dated<strong><br> 18-Oct-23</strong></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Delivery Note<strong><br>-----</strong></td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Mode of Payment<strong><br>-----</strong></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" rowspan="2" colspan="2">
+                        Consignee (ship to) <br>
+                        <strong>Jetway Oil & Fuel Services Home PvtLtd(Karnataka)</strong><br>
+                        Jaitammal, Plot No. 263/3, Sambhadev Nagar, <br> Piranwadi, Belagavi, Karnataka<br>
+                        GSTIN/UIN: 29AAFCJ2498F1Z8<br>
+                        State Name: Karnataka, Code: 29
+                    </td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Refrence Number<strong><br>-----</strong></td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Other Refrence<strong><br>-----</strong></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Buyer's Order No.<strong><br>-----</strong></td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Dated<strong><br>-----</strong></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" rowspan="2" colspan="2">
+                        Buyer's (bill to) <br>
+                        <strong>Jetway Oil & Fuel Services Home PvtLtd(Karnataka)</strong><br>
+                        Jaitammal, Plot No. 263/3, Sambhadev Nagar, <br> Piranwadi, Belagavi, Karnataka<br>
+                        GSTIN/UIN: 29AAFCJ2498F1Z8<br>
+                        State Name: Karnataka, Code: 29
+                    </td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Dispatched Through <strong><br> KA-04-HR-1231 </strong></td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">Dispatched By <strong><br> 18-Oct-23 </strong></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="4">Terms of Delivery <strong><br>--- </strong></td>
+                </tr>
+                <tr>
+                    <th style="border: 1px solid black;padding: 8px;">Description of Goods</th>
+                    <th style="border: 1px solid black;padding: 8px;">HSN/SAC</th>
+                    <th style="border: 1px solid black;padding: 8px;">Quantity</th>
+                    <th style="border: 1px solid black;padding: 8px;">Rate </th> 
+                    <th style="border: 1px solid black;padding: 8px;">per</th>
+                    <th style="border: 1px solid black;padding: 8px;">Amount</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;">DIESEL</td>
+                    <td style="border: 1px solid black;padding: 8px;"></td>
+                    <td style="border: 1px solid black;padding: 8px;"><strong> 1,985.05 Ltr </strong></td>
+                    <td style="border: 1px solid black;padding: 8px;">87.76 </th> 
+                    <th style="border: 1px solid black;padding: 8px;"> Ltr</td>
+                    <td style="border: 1px solid black;padding: 8px;">1,74,207.99</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;">Less: <span style="text-align: right;">Discount</span></td>
 
+                    <td style="border: 1px solid black;padding: 8px;"></td>
+                    <td style="border: 1px solid black;padding: 8px;"></td>
+                    <td style="border: 1px solid black;padding: 8px;"></td>
+                    <td style="border: 1px solid black;padding: 8px;"></td>
+                    <td style="border: 1px solid black;padding: 8px;">(-)1,310.13</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;"  style="text-align: right;">Total</td>
+                    <td style="border: 1px solid black;padding: 8px;"></td>
+                    <td style="border: 1px solid black;padding: 8px;"><strong> 1,985.05 Ltr </strong></td>
+                    <td style="border: 1px solid black;padding: 8px;"></td>
+                    <td style="border: 1px solid black;padding: 8px;"></td>
+                    <td style="border: 1px solid black;padding: 8px;">₹ 1,72,897.86</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="6">
+                        Amount Chargeable (in words)<br>
+                        <strong> INR One Lakh Seventy Two Thousand Eight Hundred Ninety Seven and Eighty Six paise Only </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">
+                        <u>Declaration </u><br>
+                        1.We declare that this Invoice shows the Actual Price of the Goods described and that all Particulars are True and Correct.<br>
+                        2. Bills Strictly to be paid Against the Delivery. Prosecution under MSME Act 2006 will apply on Unpaid Bills.<br>
+                        3. Interest will be charged as per MSME ACT 2006 terms & conditions.<br>
+                        4. No Claim or Complaint Shall be Entertained by us after the Goods are Delivered.
+                    </td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="4">
+                        Company's Bank Details<br>
+                        Account Holder Name : <strong> Jetway Oil & Fuel Services Home PvtLtd(Karnataka) </strong><br>
+                        Bank Name: <strong> Indian Overseas Bank </strong><br>
+                        A/C No. <strong> 19710200000481 </strong><br>
+                        Branch & IFS Code: <strong> Serula & ICIC0001247 </strong><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="2">
+                        <img src="./josh stamp.png" width="150" height="auto" alt="">
+                        Customer's Seal and Signature
+                    </td>
+                    <td style="border: 1px solid black;padding: 8px;" colspan="4">
+                        <img src="./josh stamp.png" width="150" height="auto" alt="">
+                        Jetway Oil & Fuel Service<br>
+                    </td>
+                    
+                </tr>
+            </table>
+            <br>
+            <center>THANKS FOR DOING BUSINESS WITH US</center>
+
+        </div>
+    </section>
+
+    <div class="row">
+        <div class="col-xxl-12 mx-auto my-3">
+            <div class="button-group hide-on-print">
+                <ul>
+                    <li class="back-button">
+                        <a href="/admin/orders/details/<%= order.id %>" class="btn text-white print-button rounded ms-2" > Back </a>
+                    </li>
+                    <li class="print-button">
+                        <button class="btn text-white print-button rounded ms-2" onclick="printInvoice()" > Print </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function printInvoice() {
+  // Hide elements that should not be printed
+  const elementsToHide = document.querySelectorAll('.hide-on-print');
+  elementsToHide.forEach((element) => {
+    element.style.display = 'none';
+  });
+
+  // Get the content within the printable area
+  const printableArea = document.getElementById('printableArea');
+  const tableContent = printableArea.innerHTML; // Get the table content
+
+  // Open a new window for printing
+  const printWindow = window.open('', '', 'width=600,height=600');
+  printWindow.document.open();
+  printWindow.document.write('<html><head><style>table {border-collapse: collapse;width: 100%;}th, td {border: 1px solid black;padding: 8px;} </style> </head><body>');
+  printWindow.document.write(tableContent); // Write the table content
+  printWindow.document.write('</body></html');
+  printWindow.document.close();
+
+  // Print the content
+  printWindow.print();
+
+  // Close the print window
+  printWindow.close();
+
+  // Restore the hidden elements after printing is done
+  elementsToHide.forEach((element) => {
+    element.style.display = '';
+  });
+}
+
+    </script>
 </body>
 </html>
+
+

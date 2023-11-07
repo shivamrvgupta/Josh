@@ -180,6 +180,45 @@
     
                                 </div>
                             </div>
+                            
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-header-2">
+                                        <h5>Availabe At Stores</h5>
+                                    </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <% product.branch_status.forEach((branchStatus) => { %>
+                                                <div class="col-sm-6 mb-3">
+                                                    <div class="row">
+                                                        <label class="col-sm-6 form-label-title"><%= branchStatus.branch_id.name %></label>
+                                                        <div class="col-sm-6">
+                                                            <div onclick="updateStatus('<%= branchStatus.id %>')">
+                                                                <div class="legend-indicator <%= branchStatus.status ? 'status-close' : 'status-danger' %>">
+                                                                    <span id="statusText_<%= branchStatus.id %>"><%= branchStatus.status ? 'Active' : 'Disabled' %></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <% }); %>
+                                        </div>
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="col-sm-3 form-label-title">Add Branches</label>
+                                            <div class="col-sm-9">
+                                                <select id="countries" name="branches[]" multiple>
+                                                    <% if (branch != '') { %>        
+                                                        <% branch.forEach(branch => { %>
+                                                            <option value="<%= branch._id %>"><%= branch.name %></option>
+                                                        <% }); %>
+                                                    <% } else { %>
+                                                    <option value="none">--- Nothing To Show ---</option>
+                                                    <% } %>    
+                                                </select>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
 
                             <div class="card">
                                 <div class="card-body">
@@ -210,6 +249,29 @@
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
+  <script>
+    // This script will execute on the client-side after the page loads
+
+    // Add an event listener to the form submission event
+    document.querySelector('form').addEventListener('submit', function (event) {
+        const selectElement = document.getElementById('countries');
+        const selectedOptions = [...selectElement.selectedOptions];
+
+        // Map selected options to branch IDs and create the format needed by the server
+        const selectedBranches = selectedOptions.map(option => ({
+            branch_id: option.value,
+            status: true  // You can set the status as needed
+        }));
+
+        // Attach the selected branches data to a hidden input field in the form
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'selectedBranches';
+        hiddenInput.value = JSON.stringify(selectedBranches);
+        this.appendChild(hiddenInput);
+    });
+</script>
+
 <script>
     $(document).ready(function () {
         $("#category").change(function () {

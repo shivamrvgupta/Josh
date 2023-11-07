@@ -63,7 +63,7 @@ module.exports = {
         }
         try {
             console.log("I am here")
-            const { name, phone, email, password, password2, image, address1, address2, area, pincode, city, state, country } = req.body;
+            const { name, phone, email, password, password2, image, address1, address2, area, pincode, city, state, country,  account_holder_name ,bank_name, account_no, ifsc_code, branch_name, gst_no } = req.body;
         
             // Check if passwords match
             if (password !== password2) {
@@ -75,20 +75,20 @@ module.exports = {
             }
         
             const branchData = {
-            token: uuidv4(),
-            name,
-            phone,
-            email,
-            password: await bcrypt.hash("1234@user", 10),
-            image: imageFilename,
-            address1,
-            address2,
-            area,
-            pincode,
-            city,
-            state,
-            country,
-        
+              token: uuidv4(),
+              name,
+              phone,
+              email,
+              password: await bcrypt.hash("1234@user", 10),
+              image: imageFilename,
+              address1,
+              address2,
+              area,
+              pincode,
+              city,
+              state,
+              country,
+              gst_no
             };
             
             // Check if the phone number exists in the database
@@ -118,9 +118,25 @@ module.exports = {
                 branch_id : newBranch._id,
                 status : false,
             }];
+
             console.log(branchProducts)
         
             await newBranch.save();
+
+            const bankData = {
+              user_id : newBranch._id,
+              account_holder_name,
+              account_no,
+              branch :branch_name,
+              ifsc_code,
+              bank_name,
+            }
+            
+            const newBranchBank = new models.BranchModel.Bank(bankData); 
+
+            await newBranchBank.save();
+
+            
             console.log("Branch Added successfully");
             // Update branch status for all products
             await models.ProductModel.Product.updateMany(
@@ -179,6 +195,7 @@ module.exports = {
         
             // Find the branch in the database by ID
             const branch = await models.BranchModel.Branch.findById(branchId);
+            const bank = await models.BranchModel.Bank.findOne({user_id : branchId});
         
             if (!branch) {
               // branch not found in the database
@@ -187,7 +204,7 @@ module.exports = {
         
             // Send the category details to the client for updating
             const error = " Update Branch";
-            res.render('admin/branch/update', { branch, user, error }); // Assuming you are using a template engine like EJS
+            res.render('admin/branch/update', { branch, user, error, bank }); // Assuming you are using a template engine like EJS
           } catch (err) {
             console.log("There is an issue while fetching the branch for updating.");
             console.log(err.message);
@@ -201,11 +218,12 @@ module.exports = {
             const branchId = req.params.branchId;
             console.log("Updating branch with ID:", branchId);
         
-            const { name, phone, email, address1 , address2, area , pincode, city, state, country} = req.body;
+            const { name, phone, email, address1 , address2, area , pincode, city, state, country, account_holder_name ,bank_name, account_no, ifsc_code, branch_name, gst_no} = req.body;
         
             // Find the branch in the database by ID
             const branch = await models.BranchModel.Branch.findById(branchId);
-        
+            const bank = await models.BranchModel.Bank.findOne({user_id : branchId});
+
             if (!branch) {
               // branch not found in the database
               throw new Error('Branch not found.');
@@ -229,9 +247,17 @@ module.exports = {
             branch.city = city;
             branch.state = state;
             branch.country = country;
-        
+            branch.gst_no = gst_no;
+
+            bank.account_holder_name = account_holder_name;
+            bank.bank_name = bank_name;
+            bank.ifsc_code = ifsc_code;
+            bank.account_no = account_no;
+            bank.branch =  branch_name;
+
             // Save the updated branch to the database
             await branch.save();
+            await bank.save();
             console.log("Branch updated successfully");
         
             res.redirect('/admin/branch/all?success="Branch Updated Successfully"');

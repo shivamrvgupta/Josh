@@ -4,7 +4,7 @@ const fs = require('fs')
 
 
 module.exports = {
-    sendCustomMail : async (recipientEmail, subject, renderedEmailContent, invoicePdf) => {
+    sendCustomMail : async (recipientEmail, subject, renderedEmailContent) => {
         // Create a transporter using your email provider's SMTP settings
         let transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -23,12 +23,6 @@ module.exports = {
                 cc: "accounts@joshfuels.com", // Recipient's email address
                 subject: subject, // Subject of the email
                 html: renderedEmailContent, // Use the HTML template content
-                attachments: [
-                    {
-                        filename: invoicePdf, // The name of the attachment as it will appear in the email
-                        path: `./src/invoices/${invoicePdf}` // The absolute or relative path to the PDF file
-                    }
-                ] 
             };
     
             // Send the email

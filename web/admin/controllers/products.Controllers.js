@@ -165,10 +165,11 @@ module.exports = {
         .findById(productId)
         .populate('category')
         .populate('sub_category')
+        .populate('branch_status.branch_id');
   
   
         const user = req.user;
-  
+        const branch = await models.BranchModel.Branch.find({});
         const categories = await models.ProductModel.Category.find();
         const subCategories = await models.ProductModel.SubCategory.find();
   
@@ -184,6 +185,7 @@ module.exports = {
             product,
             categories,
             subCategories,
+            branch,
             error
         });
     } catch (error) {
@@ -198,9 +200,14 @@ module.exports = {
         const productId = req.params.productId;
         console.log("hey i am updateing ")
         // Collect data from the form
-        const { name, description, price, tax, tax_type, discount, discount_type, category, selectedAddons, sub_category,available_time_starts, available_time_ends } = req.body;
+        const { name, description, price, tax, tax_type, discount, discount_type, category, branches, sub_category,available_time_starts, available_time_ends } = req.body;
     
-
+          console.log("branches --",branches);
+          const selectedBranches = branches.map(branchId => ({
+            branch_id: branchId,
+            status: false // You can set the status as needed
+          }));
+          console.log("parsed --", selectedBranches);
          // Find the product by its ID
          const productToUpdate = await models.ProductModel.Product.findById(productId);
      
@@ -228,6 +235,24 @@ module.exports = {
         productToUpdate.available_time_starts = available_time_starts;
         productToUpdate.available_time_ends = available_time_ends;
     
+        // Update branch status
+        selectedBranches.forEach((branchData) => {
+          const branchStatus = productToUpdate.branch_status.find(
+            (bs) => bs.branch_id == branchData.branch_id
+          );
+
+          if (branchStatus) {
+            // Update the status if the branch already exists in branch_status
+            branchStatus.status = branchData.status;
+          } else {
+            // Create a new entry if the branch doesn't exist in branch_status
+            productToUpdate.branch_status.push({
+              branch_id: branchData.branch_id,
+              status: branchData.status,
+            });
+          }
+        });
+
         // Save the updated product to the database
         await productToUpdate.save();
     
@@ -246,7 +271,9 @@ module.exports = {
   
       // Find and delete the product from the database
       const deletedProduct = await models.ProductModel.Product.findOneAndDelete({ _id: productId });
+      const deletedBranchProduct  = await models.BranchModel.BranchProduct.findOneAndDelete({ main : productId});
   
+
       if (!deletedProduct) {
         // product not found in the database
         throw new Error('product not found.');
@@ -269,13 +296,14 @@ module.exports = {
   getDetail : async (req, res) => {
     try {
       const productId = req.params.id;
-      const product = await models.ProductModel.Product.findById(productId).populate('category').populate('sub_category');
+      const product = await models.ProductModel.Product.findById(productId).populate('category').populate('sub_category').populate('branch_status.branch_id');
       const user = req.user;
       const addon = await models.ProductModel.AddOn.find({})
+      const model_sent =  models
       if (!user) {
         return res.redirect('/admin/auth/login');
       }
-      res.render('admin/products/detail', { user,addon, product, error:"Product Detail"});
+      res.render('admin/products/detail', { user,addon,product, model_sent,error:"Product Detail"});
     } catch (err) {
       console.log(err);
       res.status(500).send('Internal Server Error');

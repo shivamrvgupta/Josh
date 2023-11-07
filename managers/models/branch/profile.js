@@ -70,6 +70,16 @@ const branchSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    gst_no: {
+        type: String,
+        required: true,
+        default : "29AAAAA1234B5C6",
+    },
+    code: {
+        type: String,
+        required: true,
+        default : "00",
+    },
     created_at: {
         type: Date,
         default: Date.now

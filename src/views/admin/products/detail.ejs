@@ -163,6 +163,10 @@
               <li class="nav-item" role="presentation">
                   <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="false">Additional info</button>
               </li>
+              
+              <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="branch-tab" data-bs-toggle="tab" data-bs-target="#branch" type="button" role="tab" aria-controls="info" aria-selected="false">Product Availability</button>
+              </li>
           </ul>
           <div class="tab-content custom-tab" id="myTabContent">
               <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description-tab">
@@ -214,6 +218,27 @@
                                   <td>Updated On</td>
                                   <td><%= product.updated_at.toLocaleDateString()%></td>
                               </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+
+              <div class="tab-pane fade" id="branch" role="tabpanel" aria-labelledby="info-tab">
+                  <div class="table-responsive">
+                      <table class="table info-table">
+                          <tbody>
+                            <tr>
+                                
+                              <td>Branch</td>
+                              <td>Is Selling</td>
+                          </tr>
+                            <% product.branch_status.forEach((branchStatus) => { %>
+                              <tr>
+                                <td><%= branchStatus.branch_id.name %></td>
+                                <td><%= branchStatus.status ? 'Yes' : 'No' %></td>
+                                <!-- Add more properties as needed -->
+                              </tr>
+                            <% }); %>
                           </tbody>
                       </table>
                   </div>

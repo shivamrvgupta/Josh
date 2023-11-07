@@ -7,7 +7,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZ
 
 {
     "address_id": "653b82b832b6784d8c5d99f9",
-    "cart_id": "6541e85435c574b59bb86dac",
+    "cart_id": "654a03150a497dd730db29ae",
     "delivery_date": "19/10/2023",
     "delivery_time": "2:00 - 10:00",
     "payment_method": "Cash on Delivery",
