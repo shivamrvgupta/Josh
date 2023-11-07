@@ -1,23 +1,23 @@
 ###
     # Customer Login
 ###
-POST http://localhost:3000/api/auth/customer/login
+POST http://35.154.189.224/api/auth/customer/login
 Content-Type: application/json
 
 {
-    "phone" : "9870878042"
+    "phone" : "9870878040"
 }
 
 
 ###
     # Verify OTP
 ###
-POST http://localhost:3000/api/auth/customer/verify-otp
+POST http://35.154.189.224/api/auth/customer/verify-otp
 Content-Type: application/json
 
 {
-    "phone" : "9870878042",
-    "otp" : "6648"
+    "phone" : "9870878040",
+    "otp" : "6746"
 }
 
 
