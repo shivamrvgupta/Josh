@@ -199,7 +199,7 @@ module.exports = {
 // Register API
   register : async (req, res) => {
     try {
-      const userData = {
+      const userDataInput = {
         token: uuidv4(),
         profile: 'images/user/default_profile.png',
         first_name: req.body.first_name,
@@ -218,7 +218,7 @@ module.exports = {
       };
 
 
-      const validationResult = Validator.validate(userData, {
+      const validationResult = Validator.validate(userDataInput, {
         first_name: {
           presence: { allowEmpty: false },
           length: { minimum: 3, maximum: 20 },
@@ -257,7 +257,7 @@ module.exports = {
         });
       }
 
-      const existingUserByEmail = await models.UserModel.User.findOne({ email: userData.email });
+      const existingUserByEmail = await models.UserModel.User.findOne({ email: userDataInput.email });
       if (existingUserByEmail) {
         return res.status(StatusCodesConstants.RESOURCE_EXISTS).json({
           status: false,
@@ -267,11 +267,11 @@ module.exports = {
         });
       }
 
-      const newUser = new models.UserModel.User(userData);
+      const newUser = new models.UserModel.User(userDataInput);
       const savedUser = await newUser.save();
 
 
-      const responseData = {
+      const userData = {
         profile: savedUser.profile,
         first_name: savedUser.first_name,
         last_name: savedUser.last_name,
@@ -291,7 +291,7 @@ module.exports = {
         status: true,
         status_code: StatusCodesConstants.SUCCESS,
         message: 'User registered successfully',
-        data: { user: responseData, token: newToken },
+        data: { userData , token: newToken },
       });
     } catch (error) {
       console.error(error);
