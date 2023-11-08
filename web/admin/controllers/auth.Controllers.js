@@ -207,7 +207,6 @@ module.exports = {
             $group: {
               _id: {
                 month: { $month: '$created_date' },
-                year: { $year: '$created_date' }
               },
               totalRevenue: { $sum: '$total_price' }
             }

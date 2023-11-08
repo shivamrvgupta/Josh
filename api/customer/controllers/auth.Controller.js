@@ -165,7 +165,7 @@ module.exports = {
           // Alternatively, you can redirect the user using a redirect URL
           // res.redirect('/register');
         }
-        const responseData = {
+        const userData = {
           profile: user.profile,
           first_name: user.first_name,
           last_name: user.last_name,
@@ -179,13 +179,13 @@ module.exports = {
         if (!isAddressConfirmed) {
           const token = AuthMiddleware.generateAccessToken(user)
           console.log("Token ---- ",token)
-          return res.status(StatusCodesConstants.SUCCESS).json({ status: true, status_code: StatusCodesConstants.SUCCESS, message: 'Address Not Confirmed', data: { responseData, token} });
+          return res.status(StatusCodesConstants.SUCCESS).json({ status: true, status_code: StatusCodesConstants.SUCCESS, message: 'Address Not Confirmed', data: { userData, token} });
         }
         // Address confirmed, log the user in (you can implement login logic here) and redirect to the dashboard
 
         const token = AuthMiddleware.generateAccessToken(user)
         console.log("Token ---- ",token)
-        return res.status(StatusCodesConstants.SUCCESS).json({ status: true, status_code: StatusCodesConstants.SUCCESS, message: 'User Found Successfully', data: { responseData , token} });
+        return res.status(StatusCodesConstants.SUCCESS).json({ status: true, status_code: StatusCodesConstants.SUCCESS, message: 'User Found Successfully', data: { userData , token} });
       } else {
         // Invalid OTP, return an error message
         return res.status(StatusCodesConstants.BAD_REQUEST).json({ status: false, status_code: StatusCodesConstants.BAD_REQUEST, message: 'Invalid OTP', data: {} });
