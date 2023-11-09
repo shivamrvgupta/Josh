@@ -176,26 +176,26 @@
 
             <script>
                 const resultEventData = document.querySelector(".result-event-data");
-const inputDataTimeClass = document.querySelector(".input-data-time");
-const inputDataTimeId = document.querySelector("#datatime");
+                const inputDataTimeClass = document.querySelector(".input-data-time");
+                const inputDataTimeId = document.querySelector("#datatime");
 
-inputDataTimeId.addEventListener("change", () => {
-	inputDataTimeClass.style = "display: none;";
-	resultEventData.innerText = `O evento será realizado na data ${formatDate(
-		inputDataTimeId.value
-	)}.`;
-});
+                inputDataTimeId.addEventListener("change", () => {
+                    inputDataTimeClass.style = "display: none;";
+                    resultEventData.innerText = `O evento será realizado na data ${formatDate(
+                        inputDataTimeId.value
+                    )}.`;
+                });
 
-const formatDate = (element) => {
-	console.log(element, "ELEMENT");
-	const splitDate = element.split("T");
-	const date = splitDate[0].split("-").reverse().join("/");
-	const hours = splitDate[1];
+                const formatDate = (element) => {
+                    console.log(element, "ELEMENT");
+                    const splitDate = element.split("T");
+                    const date = splitDate[0].split("-").reverse().join("/");
+                    const hours = splitDate[1];
 
-	return `${date} às ${hours}`;
-};
+                    return `${date} às ${hours}`;
+                };
 
-inputDataTimeId.value = "2023-01-16T09:06:33";
+                inputDataTimeId.value = "2023-01-16T09:06:33";
 
             </script>
 

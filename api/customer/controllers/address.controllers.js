@@ -36,6 +36,8 @@ module.exports = {
                 country: req.body.country,
             }
 
+            console.log(req.body)
+
             const validationResult = Validator.validate(addAddress, {
                 address_type: {
                 presence: { allowEmpty: false },
@@ -43,11 +45,11 @@ module.exports = {
                 },
                 address_1: {
                 presence: { allowEmpty: false },
-                length: { minimum: 10, maximum: 150 },
+                length: { minimum: 3, maximum: 150 },
                 },
                 area: {
                 presence: { allowEmpty: false },
-                length: { minimum: 4, maximum: 50 },
+                length: { minimum: 2, maximum: 50 },
                 },
                 city: {
                 presence: { allowEmpty: false },
