@@ -57,7 +57,7 @@ module.exports = {
                 },
                 state: {
                 presence: { allowEmpty: false },
-                length: { minimum: 4, maximum: 50 },
+                length: { minimum: 3, maximum: 50 },
                 },
                 country: {
                 presence: { allowEmpty: false },
