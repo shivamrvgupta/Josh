@@ -624,6 +624,7 @@ module.exports = {
                         existingOrder.product_items[productIndex].quantity = updateData.quantity;
                         existingOrder.total_price = updateData.total_price;
                         existingOrder.product_items[productIndex].grand_total = updateData.grand_total;
+                        existingOrder.grand_total = updateData.grand_total;
         
                         await existingOrder.save();
 
@@ -632,7 +633,7 @@ module.exports = {
                         return res.status(StatusCodesConstants.SUCCESS).json({
                             status: true,
                             status_code: StatusCodesConstants.SUCCESS,
-                            message: MessageConstants.PRODUCT_UPDATE_SUCCESSFULLY,
+                            message: MessageConstants.ORDER_UPDATE_SUCCESSFULLY,
                             data: existingOrder, // Return the updated order
                         });
                     } else {

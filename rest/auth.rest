@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
     "phone" : "9870878041",
-    "otp" : "4522"
+    "otp" : "9122"
 }
 
 

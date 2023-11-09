@@ -1,53 +1,58 @@
+# #### AUTH #### #
 ###
     # Customer Login
 ###
-POST http://35.154.189.224/api/auth/customer/login
+POST http://localhost:3000/api/auth/customer/login
 Content-Type: application/json
 
 {
-    "phone" : "8850664191"
+    "phone" : "9870878041"
 }
+
 
 ###
     # Verify OTP
 ###
-POST http://35.154.189.224/api/auth/customer/verify-otp
+POST http://localhost:3000/api/auth/customer/verify-otp
 Content-Type: application/json
 
 {
-    "phone" : "8850664191",
-    "otp" : "2558"
+    "phone" : "9870878041",
+    "otp" : "4522"
 }
+
 
 ### Registration
-POST http://127.0.0.1:3000api/auth/customer/register
+POST http://127.0.0.1:3000/api/auth/customer/register
 Content-Type: application/json
 
 {
-    "first_name": "Tes",
-    "last_name": "TEst",
-    "email": "test@joshfuels.com",
+    "first_name": "Rutu",
+    "last_name": "Rao",
+    "email": "rutu@dispostable.com",
     "company": "TYS",
-    "phone": "9210129012",
-    "accept_term": "true"
+    "phone": "8928862287",
+    "accept_term": "true",
+    "gst_no": "2AAAA123H"
 }
 
+
 ### Get Profile
-GET http://127.0.0.1:3000api/auth/customer/getProfile
+GET http://127.0.0.1:3000/api/auth/customer/getProfile
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 ### Update Profile
-POST http://127.0.0.1:3000api/auth/customer/updateProfile
+POST http://127.0.0.1:3000/api/auth/customer/updateProfile
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM5NjMxNzhmNWJmMTI2Njc3YzI0MmEiLCJmaXJzdF9uYW1lIjoiU2hpdmFtIiwibGFzdF9uYW1lIjoiR3VwdGEiLCJlbWFpbCI6ImFkbWluQGpvc2hmdWVscy5jb20iLCJwaG9uZSI6Ijg4NTA2NjQxOTEiLCJpYXQiOjE2OTY3NjkxMDAsImV4cCI6MTY5NzM3MzkwMH0.K0NRx1fEC8L0186YPz8OPKjftNEtXuWp3RUtqDR6KEQ
 
 {    
-    "first_name": "Anil"
+    "email": "admin@joshfuels.com"
 }
 
 ### Update Profile Photo 
-POST http://127.0.0.1:3000api/auth/customer/updatePhoto
+POST http://127.0.0.1:3000/api/auth/customer/updatePhoto
 Content-Type: application/json
 Authorization: Bearer 
 
@@ -57,9 +62,9 @@ Authorization: Bearer
 
 
 ### Add Address
-POST http://35.154.189.224/api/auth/customer/add-address
+POST http://localhost:3000/api/auth/customer/add-address
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTVlYWVmMmJjMTA4Nzc2ODJkZDIiLCJmaXJzdF9uYW1lIjoiUnV0dSIsImxhc3RfbmFtZSI6IlJhbyIsImVtYWlsIjoicnV0dUBkaXNwb3N0YWJsZS5jb20iLCJwaG9uZSI6Ijg5Mjg4NjIyODciLCJpc19wcml2aWxhZ2VkIjpmYWxzZSwiaWF0IjoxNjk4NzUxOTc4LCJleHAiOjE2OTkzNTY3Nzh9.KgZiOnFoxOk5Em0bfiPeUh8PChC-8phFOhexe4JnuS4
 
 {
     "address_type" : "Office", 
@@ -72,14 +77,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 }
 
 ### Get Address
-GET http://35.154.189.224/api/auth/customer/get-address
+GET http://localhost:3000/api/auth/customer/get-address
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 ### Update Address
-POST http://35.154.189.224/api/auth/customer/update-address
+POST http://localhost:3000/api/auth/customer/update-address
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
     "address_id" : "650191993bd8b22339022421",
@@ -93,59 +98,54 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 }
 
 ### Deleted Address 
-DELETE http://35.154.189.224/api/auth/customer/delete-address
+DELETE http://localhost:3000/api/auth/customer/delete-address
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
     "address_id" : "650191c73bd8b22339022427"
 }
 
+
 ### Add Device
-POST http://35.154.189.224/api/auth/customer/add-device
+POST http://localhost:3000/api/auth/customer/add-device
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
-    "name" : "shivam's iPhone",
-    "fcm_token" : "#12312412412412424124124" , 
+    "name" : "Anil's iPhone",
     "type" : "iOS",
-    "version" : "17.0.1"
+    "version" : "16.6.8",
+    "fcm_token" : "ekwC42hSTm2WyC35ZYd75K:APA91bF9uhR9CcJOKZ5vhf3BFnA7Hc6JF_W5lL6e_AOxm0o6PxOND5OS-4sJLjeak0dKheY0NewbSc4d6tPw5jVV6JBfwEXemWwHXhpwqCccF0VZJ3Cppy0vPmsOawgEWca7UY7n8NJj"
 }
 
 ### Fetch data 
-Get http://35.154.189.224/api/auth/customer/userdata
+Get http://localhost:3000/api/auth/customer/userdata
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 ### LogOut
-POST http://35.154.189.224/api/auth/customer/logout
+POST http://localhost:3000/api/auth/customer/logout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU.eyJ1c2VySWQiOiI2NTFmYjNlODQxZWRlNjgxYzE2Y2Q3NTkiLCJmaXJzdF9uYW1lIjoiVGVzIiwibGFzdF9uYW1lIjoiVEVzdCIsImVtYWlsIjoidGVzdEBqb3NoZnVlbHMuY29tIiwicGhvbmUiOiI5MjEwMTI5MDEyIiwiaWF0IjoxNjk2NTc2NDg5LCJleHAiOjE2OTcxODEyODl9.CUa2Wi7sJKRuTp7NZVJ6kCN9Z3WgCQsR9FK5GoDunbg
 
-### Send OTP to email 
-POST http://35.154.189.224/api/auth/customer/send-otp
-Content-Type: application/json
 
-{
-    "email" : "shivamrvgupta@gmail.com"
-}
-
-########## Branch API ##########
+########## Products API ##########
 
 ### 
     # Branch Details
 ###
 GET  http://35.154.189.224/api/auth/branch/nearest-branch
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 ### 
     # Nearest Branch Product
 ###
-GET  http://35.154.189.224/api/auth/branch/branchProducts
+GET  http://localhost:3000/api/auth/branch/branchProducts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
+
 
 
 ########## Cart API ##########
@@ -153,41 +153,41 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 ### 
     # Show Cart
 ###
-GET  http://35.154.189.224/api/auth/cart/get
+GET  http://localhost:3000/api/auth/cart/get
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 ### 
     # Add To Cart
 ###
-POST http://35.154.189.224/api/auth/cart/add
+POST http://localhost:3000/api/auth/cart/add
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 {
     "product" : "64f6da5aed30c8f3d5765007",
-    "quantity" : "15"
+    "quantity" : "192094"
 }
 
 ### 
     # Update Cart Data
 ###
-POST http://35.154.189.224/api/auth/cart/update
+POST http://localhost:3000/api/auth/cart/update
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 {
-    "cart_id" : "6509f70778e25cf42012d7e8",
+    "cart_id" : "652cc91b17c5dcafb2fa2c41",
     "product_id" : "64f6da5aed30c8f3d5765007",
-    "quantity" : 91
+    "quantity" : 215
 }
 
 ### 
     # Delete Single Cart Data
 ###
-POST http://35.154.189.224/api/auth/cart/delete-item
+POST http://localhost:3000/api/auth/cart/delete-item
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 {
     "cart_id" : "6509f70778e25cf42012d7e8",
@@ -197,152 +197,136 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkY
 ### 
     # Delete Cart Data
 ###
-DELETE http://35.154.189.224api/auth/cart/delete
+DELETE http://localhost:3000/api/auth/cart/delete
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM5NjMxNzhmNWJmMTI2Njc3YzI0MmEiLCJmaXJzdF9uYW1lIjoiU2hpdmFtIiwibGFzdF9uYW1lIjoiR3VwdGEiLCJlbWFpbCI6ImFkbWluQGpvc2hmdWVscy5jb20iLCJwaG9uZSI6Ijg4NTA2NjQxOTEiLCJpc19wcml2aWxhZ2VkIjpmYWxzZSwiaWF0IjoxNjk3Nzg3MzY4LCJleHAiOjE2OTgzOTIxNjh9.9EfSXpEu7Z122TphENTVLOreHpvRTUiissbcDHu8R88
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5ODczNTExNSwiZXhwIjoxNjk5MzM5OTE1fQ.LSmtZpjQm7lvql409BxqscaKUd_qdFvgS2pbWhcBFWg
 
 {
-    "cart_id" : "651564f15b9479a09a6fcdf1"
-    
+    "cart_id" : "653b78ef8467c46b6822bd54"
 }
 
 
 ###         # Order API  #       ###
 ## CREATE ORDER 
-POST http://35.154.189.224/api/auth/order/add
+POST http://localhost:3000/api/auth/order/add
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
-    "address_id": "65003ac3957a312ef073de8e",
-    "cart_id": "654a097679dcebf7531390d5",
-    "delivery_date": "29/09/2023",
+    "address_id": "653b82b832b6784d8c5d99f9",
+    "cart_id": "654a03150a497dd730db29ae",
+    "delivery_date": "19/10/2023",
     "delivery_time": "2:00 - 10:00",
     "payment_method": "Cash on Delivery",
     "note": "Keep the Diesels extra on;y",
-    "total_price" : 12340,
+    "total_price" : 19209400,
     "coupon_discount" : 100,
-    "delivery_fee" : 300,
-    "grand_total": 1334
+    "delivery_fee" : 0,
+    "grand_total": 19209300
 
 }
 
 
 ### GeT ORDER 
-GET http://35.154.189.224/api/auth/order/get
+GET http://localhost:3000/api/auth/order/get
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 ### GeT Single ORDER 
-GET http://35.154.189.224/api/auth/order/get-order
+GET http://localhost:3000/api/auth/order/get-order?page=1&perPage=10
+
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
     "order_id" : "100002"
 }
 
-
-
 ### Cancel order
-POST http://35.154.189.224/api/auth/order/delete
+POST http://localhost:3000/api/auth/order/delete
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
     "order_id" : "100002"
 }
 
 ### Update order
-POST http://35.154.189.224/api/auth/order/update
+POST http://localhost:3000/api/auth/order/update
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
     "order_id" : "100002",
     "product_id" : "64f6da85ed30c8f3d5765043",
     "quantity" : 100,
     "total_price" : 12385,
-    "grand_total" : 16446.88
+    "grand_total" : 22130
 }   
 
-### Send Email
-POST http://35.154.189.224/api/auth/customer/send-email
+
+
+###         # Order API  #       ###
+## CREATE ORDER 
+POST http://localhost:3000/api/auth/order/add
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
-
-
-
-##### Delivery Mannn #######
-
-###
-    # DeliveryMan Login
-###
-POST http://35.154.189.224/api/auth/deliveryman/login
-Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
-    "email": "deliveryman1@joshfuels.com",
-    "password": "1234@user"
-}
+    "address_id": "653b82b832b6784d8c5d99f9",
+    "cart_id": "654a03150a497dd730db29ae",
+    "delivery_date": "19/10/2023",
+    "delivery_time": "2:00 - 10:00",
+    "payment_method": "Cash on Delivery",
+    "note": "Keep the Diesels extra on;y",
+    "total_price" : 19209400,
+    "coupon_discount" : 100,
+    "delivery_fee" : 0,
+    "grand_total": 19209300
 
-### Get Profile
-GET http://35.154.189.224/api/auth/deliveryman/getProfile
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
-
-### Get Profile
-GET http://35.154.189.224/api/auth/deliveryman/userdata
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
-
-###
-    # Get order 
-###
-GET http://35.154.189.224/api/auth/deliveryman/order/get
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
-
-###
-    # Get Single order 
-###
-GET http://35.154.189.224/api/auth/deliveryman/order/get-order
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
-
-{
-    "order_id" : "100009"
-}
-
-###
-    # Get Previous order 
-###
-GET http://35.154.189.224/api/auth/deliveryman/order/previous-order
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
-
-
-###
-    # Update Delivery Status 
-###
-POST http://35.154.189.224/api/auth/deliveryman/order/update-status
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
-
-{
-    "order_id": "100009",
-    "status" : "Confirmed"
 }
 
 
-###
-    # Update Payment Status 
-###
-POST http://35.154.189.224/api/auth/deliveryman/order/update-payment
+### GeT ORDER 
+GET http://localhost:3000/api/auth/order/get
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTM0OTUzNiwiZXhwIjoxNjk5OTU0MzM2fQ.-TDyEwCHJXKBWqPTzjdHPe5Us97XRrENASTmSIq1G1g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
+
+### GeT Single ORDER 
+GET http://localhost:3000/api/auth/order/get-order?page=1&perPage=10
+
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
 
 {
-    "order_id": "100009",
-    "status" : "Paid"
+    "order_id" : "100002"
 }
+
+### Cancel order
+POST http://localhost:3000/api/auth/order/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
+
+{
+    "order_id" : "100002"
+}
+
+### Update order
+POST http://localhost:3000/api/auth/order/update
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
+
+{
+    "order_id" : "100002",
+    "product_id" : "64f6da85ed30c8f3d5765043",
+    "quantity" : 100,
+    "total_price" : 12385,
+    "grand_total" : 22130
+}   
+
+
+
+
+
+
+
