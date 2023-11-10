@@ -63,7 +63,7 @@ module.exports = {
         }
         try {
             console.log("I am here")
-            const { name, phone, email, password, password2, image, address1, address2, area, pincode, city, state, country,  account_holder_name ,bank_name, account_no, ifsc_code, branch_name, gst_no } = req.body;
+            const { name, phone, email, password, password2, image, address1, address2, area, pincode, city, state, country,  account_holder_name ,bank_name, account_no, ifsc_code, branch_name, gst_no, delivery_fees } = req.body;
         
             // Check if passwords match
             if (password !== password2) {
@@ -131,10 +131,17 @@ module.exports = {
               ifsc_code,
               bank_name,
             }
+
+            const deliveryFees = {
+              branch_id : newBranch._id,
+              delivery_fee : delivery_fees,
+            }
             
+            const setDeliveryFees = new models.BranchModel.DeliveryFees(deliveryFees)
             const newBranchBank = new models.BranchModel.Bank(bankData); 
 
             await newBranchBank.save();
+            await setDeliveryFees.save();
 
             
             console.log("Branch Added successfully");
@@ -196,7 +203,8 @@ module.exports = {
             // Find the branch in the database by ID
             const branch = await models.BranchModel.Branch.findById(branchId);
             const bank = await models.BranchModel.Bank.findOne({user_id : branchId});
-        
+            const setdeliveryFees = await models.BranchModel.DeliveryFees.findOne({branch_id : branchId});
+
             if (!branch) {
               // branch not found in the database
               throw new Error('Branch not found.');
@@ -204,7 +212,7 @@ module.exports = {
         
             // Send the category details to the client for updating
             const error = " Update Branch";
-            res.render('admin/branch/update', { branch, user, error, bank }); // Assuming you are using a template engine like EJS
+            res.render('admin/branch/update', { branch, user, error, bank, setdeliveryFees }); // Assuming you are using a template engine like EJS
           } catch (err) {
             console.log("There is an issue while fetching the branch for updating.");
             console.log(err.message);
@@ -218,11 +226,15 @@ module.exports = {
             const branchId = req.params.branchId;
             console.log("Updating branch with ID:", branchId);
         
-            const { name, phone, email, address1 , address2, area , pincode, city, state, country, account_holder_name ,bank_name, account_no, ifsc_code, branch_name, gst_no} = req.body;
+            const { name, phone, email, address1 , address2, area , pincode, city, state, country, account_holder_name ,bank_name, account_no, ifsc_code, branch_name, gst_no, delivery_fees} = req.body;
         
+            console.log(delivery_fees)
             // Find the branch in the database by ID
             const branch = await models.BranchModel.Branch.findById(branchId);
             const bank = await models.BranchModel.Bank.findOne({user_id : branchId});
+            const setdeliveryFees = await models.BranchModel.DeliveryFees.findOne({branch_id : branchId});
+
+            console.log(setdeliveryFees)
 
             if (!branch) {
               // branch not found in the database
@@ -255,9 +267,13 @@ module.exports = {
             bank.account_no = account_no;
             bank.branch =  branch_name;
 
+            setdeliveryFees.delivery_fee = delivery_fees;
+
+
             // Save the updated branch to the database
             await branch.save();
             await bank.save();
+            await setdeliveryFees.save();
             console.log("Branch updated successfully");
         
             res.redirect('/admin/branch/all?success="Branch Updated Successfully"');
@@ -295,8 +311,9 @@ module.exports = {
         console.log(err.message);
         res.status(400).send(err.message);
       }
-    }
+    },
 }
+
 
 
 

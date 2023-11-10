@@ -230,25 +230,6 @@ module.exports = {
       }
       },
 
-        getOrders : async ( req, res ) =>{
-          try {
-              const vehicle_id = req.query.vehicle_id;
-              const vehicle = await models.BranchModel.Vehicle.find({ _id : vehicle_id }).populate('deliveryman_id');
-
-              const deliveryMan = vehicle[0].deliveryman_id._id
-
-              const orders =  await models.BranchModel.Order.find({ 
-                delivery_id : deliveryMan ,
-                status : "Out for delivery"
-              }).populate('user_id');
-
-              res.json(orders);
-          } catch (error) {
-              console.error(error);
-              res.status(500).json({ error: 'Internal Server Error' });
-          }
-      },
-
   // Detailed Stats
       detailedStats :async (req, res) => {
         try {

@@ -28,7 +28,9 @@ module.exports = {
     list : async (req, res) => {
       try{
         const user = req.user;
-    
+        const page = req.query.page ? parseInt(req.query.page) : 0; // Start from page 0
+        const perPage = req.query.perPage ? parseInt(req.query.perPage) : 10; // Items per page
+
         if(!user){
           return res.redirect('/admin/auth/login')
         }
@@ -38,7 +40,9 @@ module.exports = {
         .populate('branch_id')
         .populate('address_id')
         .populate('delivery_id') // Populate the delivery information if applicable
-        .sort({ updated_date: -1 });
+        .sort({ updated_date: -1 })
+        .skip(page * perPage) // Calculate the skip based on the current page
+        .limit(perPage); // Limit the number of results per page
     
       const customers = await models.UserModel.User.find({ usertype: "Customer" });
       const branches = await models.BranchModel.Branch.find();
@@ -175,14 +179,13 @@ module.exports = {
         // console.log(orders)
         const branches = await models.BranchModel.Branch.find();  
 
-        const customers = await models.UserModel.User.find({ usertype: "Customer" });
         const ordersCount = orders.length;
     
+        console.log(orders)
         // Render the view with filtered orders and the appropriate error message
         res.render("admin/order/all", {
           user,
           ordersCount,
-          customers,
           orders,
           options,
           branches,

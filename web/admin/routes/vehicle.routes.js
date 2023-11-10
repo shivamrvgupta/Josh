@@ -9,10 +9,10 @@ router.get('/getDeliveryman',  AuthMiddleware.authenticateToken, VehicleControll
 router.get('/vehicle-stats', AuthMiddleware.authenticateToken ,  VehicleControllers.vehicleStats);
 
 router.get('/vehicle-stats/:vehicleId', AuthMiddleware.authenticateToken ,  VehicleControllers.detailedStats);
-router.get('/getOrder', AuthMiddleware.authenticateToken ,  VehicleControllers.getOrders);
+// router.get('/getOrder', AuthMiddleware.authenticateToken ,  VehicleControllers.getOrders);
 
 
-router.post('/post-stats', AuthMiddleware.authenticateToken ,  VehicleControllers.postStats);
+// router.post('/post-stats', AuthMiddleware.authenticateToken ,  VehicleControllers.postStats);
 router.post('/add', AuthMiddleware.authenticateToken , VehicleControllers.postAdd);
 
 router.post('delete', AuthMiddleware.authenticateToken , VehicleControllers.updateStatus);
