@@ -15,9 +15,10 @@ router.get('/vehicle-stats/:vehicleId', AuthMiddleware.authenticateToken ,  Vehi
 // router.post('/post-stats', AuthMiddleware.authenticateToken ,  VehicleControllers.postStats);
 router.post('/add', AuthMiddleware.authenticateToken , VehicleControllers.postAdd);
 
-router.post('delete', AuthMiddleware.authenticateToken , VehicleControllers.updateStatus);
+router.post('/delete', AuthMiddleware.authenticateToken , VehicleControllers.updateStatus);
 
 router.post('/update/:vehicleId', AuthMiddleware.authenticateToken , VehicleControllers.postUpdate);
 
+router.get('/getallstats', AuthMiddleware.authenticateToken, VehicleControllers.getStats)
 
 module.exports = router;

@@ -5,7 +5,7 @@ POST http://localhost:3000/api/auth/customer/login
 Content-Type: application/json
 
 {
-    "phone" : "9870878041"
+    "phone" : "8767451372"
 }
 
 
@@ -16,8 +16,8 @@ POST http://localhost:3000/api/auth/customer/verify-otp
 Content-Type: application/json
 
 {
-    "phone" : "9870878041",
-    "otp" : "9122"
+    "phone" : "8767451372",
+    "otp" : "3018"
 }
 
 
@@ -39,7 +39,7 @@ Content-Type: application/json
 ### Get Profile
 GET http://127.0.0.1:3000/api/auth/customer/getProfile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQwZTQ2NDhkMjU1MmM3YjQzMzgwNDEiLCJmaXJzdF9uYW1lIjoiYW5pbCIsImxhc3RfbmFtZSI6Imd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGE0MkBnbWFpbC5jb20iLCJwaG9uZSI6Ijk4NzA4NzgwNDIiLCJpc19wcml2aWxhZ2VkIjp0cnVlLCJpYXQiOjE2OTg3NTMzNDMsImV4cCI6MTY5OTM1ODE0M30.NZMR-cyjXa1ktooGgjahvHdq22Fjr6xzq5RvHFr3WPU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGZkYzNhZmZmOWQ2MjgyYWM3ZTU0MDkiLCJmaXJzdF9uYW1lIjoiUmV5YW5zaCIsImxhc3RfbmFtZSI6Ikd1cHRhIiwiZW1haWwiOiJhbmlsZ3VwdGExQGRpc3Bvc3RhYmxlLmNvbSIsInBob25lIjoiOTg3MDg3ODA0MCIsImlzX3ByaXZpbGFnZWQiOnRydWUsImlhdCI6MTY5OTk5ODc3MywiZXhwIjoxNzAwNjAzNTczfQ.9Tmz10pxJFCOxAkv0usc7X67R2Ose9q7QdIkLfhKiV8
 
 ### Update Profile
 POST http://127.0.0.1:3000/api/auth/customer/updateProfile

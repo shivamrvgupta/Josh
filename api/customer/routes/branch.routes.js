@@ -9,5 +9,6 @@ router.get('/test', (req, res) => {
 
 router.get('/nearest-branch',AuthMiddleware.authenticateToken ,BranchController.getNearestBranch)
 router.get('/branchProducts',AuthMiddleware.authenticateToken ,BranchController.branchProducts)
+router.get('/getDeliveryFees',AuthMiddleware.authenticateToken ,BranchController.getDeliveryFees)
 
 module.exports = router;

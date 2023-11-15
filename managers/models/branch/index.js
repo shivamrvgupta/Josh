@@ -6,6 +6,7 @@ const Vehicle = require('./vehicle');
 const VehicleStats = require('./vehicleStats');
 const Bank = require('./bank');
 const DeliveryFees = require('./delivery')
+const Coupons = require('./coupons')
 
 
 module.exports = {
@@ -16,5 +17,6 @@ module.exports = {
     Vehicle,
     VehicleStats,
     Bank,
-    DeliveryFees
+    DeliveryFees,
+    Coupons,
 }

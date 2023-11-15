@@ -7,7 +7,8 @@ const BranchControllers = require('./branch.Controllers');
 const DeliveryManControllers = require('./deliveryman.Controllers');
 const CustomerControllers = require('./customer.Controllers');
 const OrderControllers = require('./order.Controllers');
-const VehicleControllers = require('./vehicle.controllers');
+const VehicleControllers = require('./vehicle.Controllers');
+const SettingsControllers = require('./settings.Controllers')
 
 module.exports = {
     AuthController,
@@ -19,5 +20,6 @@ module.exports = {
     DeliveryManControllers,
     CustomerControllers,
     OrderControllers,
-    VehicleControllers
+    VehicleControllers,
+    SettingsControllers
 }

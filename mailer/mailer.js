@@ -36,6 +36,6 @@ module.exports = {
         }
     },
     verifyEmail: '../../../src/views/mail/email_verification.html',
-    invoiceEmail: '../../../src/views/mail/invoice.html',
+    invoiceEmail: '../../../src/views/mail/invoice.ejs',
     
 }

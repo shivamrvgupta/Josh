@@ -11,13 +11,31 @@ const secretKey = process.env.SECRET_KEY
 const {
   ImgServices
 } = require('../../../managers/services');
-const { generateAccessToken} = require('../middlewares/auth.middleware');
+const { FamarkCloud } = require('../middlewares');
 const models = require('../../../managers/models');
 
 // This would be your token blacklist storage
 const tokenBlacklist = new Set();
 const options = { day: '2-digit', month: 'short', year: 'numeric' };
 const options2 = { timeZone: 'UTC', };
+
+
+// Functions
+
+async function getSessionId(domainName, userName, password) {
+  const credential = {
+      DomainName: domainName,
+      UserName: userName,
+      Password: password,
+  };
+
+  return await FamarkCloud.postData(
+      "/Credential/Connect",
+      JSON.stringify(credential),
+      null
+  );
+}
+
 
 
 
@@ -187,66 +205,104 @@ module.exports = {
     },
 
   // Vehicle Stats
-      vehicleStats : async (req, res) => {
-        try {
-            const vehicle = await models.BranchModel.Vehicle.find()
-            .populate('deliveryman_id');
-        
-            const user = req.user;
-            if (!user) {
-                return res.redirect('/admin/auth/login');
-            }
-            res.render('admin/vehicle/addStats', { Title: "Vehicle list", user, vehicle , error: "DeliveryMan List" })
-        } catch (err) {
-            console.log(err);
-            res.status(500).send('Internal Server Error');
-        }
-      },
-
-      postStats : async (req, res) => {
-      try{
-        const {vehicle_id, order_id, fuel_capacity, fuel_dispensed, fuel_available, dispensed_datetime} = req.body;
-          console.log(req.body)
-        if (!vehicle_id || !order_id || !fuel_capacity  || !fuel_dispensed || !fuel_available  || !dispensed_datetime ) {
-            throw new Error('Required fields are missing.');
-        }
-
-        const statsData = {
-            vehicle_id, 
-            order_id, 
-            fuel_capacity,
-            fuel_dispensed,
-            fuel_available,
-            dispensed_datetime
-        };
-
-        const vehicleStats = new models.BranchModel.VehicleStats(statsData);
-        await vehicleStats.save();
-        console.log("Vehicle Stats Added successfully");
-        res.redirect('/admin/vehicle/list');
+    vehicleStats : async (req, res) => {
+      try {
+          const vehicle = await models.BranchModel.Vehicle.find()
+          .populate('deliveryman_id');
+      
+          const user = req.user;
+          if (!user) {
+              return res.redirect('/admin/auth/login');
+          }
+          res.render('admin/vehicle/addStats', { Title: "Vehicle list", user, vehicle , error: "DeliveryMan List" })
       } catch (err) {
-        console.log(err);
-        res.status(500).send('Internal Server Error');
+          console.log(err);
+          res.status(500).send('Internal Server Error');
       }
-      },
+    },
+
+    postStats : async (req, res) => {
+    try{
+      const {vehicle_id, order_id, fuel_capacity, fuel_dispensed, fuel_available, dispensed_datetime} = req.body;
+        console.log(req.body)
+      if (!vehicle_id || !order_id || !fuel_capacity  || !fuel_dispensed || !fuel_available  || !dispensed_datetime ) {
+          throw new Error('Required fields are missing.');
+      }
+
+      const statsData = {
+          vehicle_id, 
+          order_id, 
+          fuel_capacity,
+          fuel_dispensed,
+          fuel_available,
+          dispensed_datetime
+      };
+
+      const vehicleStats = new models.BranchModel.VehicleStats(statsData);
+      await vehicleStats.save();
+      console.log("Vehicle Stats Added successfully");
+      res.redirect('/admin/vehicle/list');
+    } catch (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+    }
+    },
 
   // Detailed Stats
-      detailedStats :async (req, res) => {
-        try {
-            const vehicleId = req.params.vehicleId;
-            const vehicleStats = await models.BranchModel.VehicleStats.find({vehicle : vehicleId})
-                .populate('vehicle')
-                .populate('order_id')
-        
-            const user = req.user;
-            if (!user) {
-                return res.redirect('/admin/auth/login');
-            }
-            res.render('admin/vehicle/detailStats', { Title: "Vehicle list", user, vehicleStats, options,  options2 , error: "DeliveryMan List" })
-        } catch (err) {
-            console.log(err);
-            res.status(500).send('Internal Server Error');
+    detailedStats :async (req, res) => {
+    try {
+        const vehicleId = req.params.vehicleId;
+        const vehicleStats = await models.BranchModel.VehicleStats.find({vehicle : vehicleId})
+            .populate('vehicle')
+            .populate('order_id')
+
+        const user = req.user;
+        if (!user) {
+            return res.redirect('/admin/auth/login');
         }
+        res.render('admin/vehicle/detailStats', { Title: "Vehicle list", user, vehicleStats, options,  options2 , error: "DeliveryMan List" })
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+    }
+    },
+    
+    getStats :async (req, res) => {
+      try {
+        const user = req.user;
+        if (!user) {
+            return res.redirect('/admin/auth/login');
+        }
+
+        const domainName = "Demo1";
+        const userName = "Shivam";
+        const password = "Shiv@mGupt@";
+
+        const sessionId = await getSessionId(domainName, userName, password);
+        
+        if (sessionId == null) {
+          console.log("Login Failed!");
+          return;
+        }
+
+        //Retrieving Business_Contact records
+        const retrieveMultipleQuery = {
+          Columns: "Machine, Rate, Amount, Volume, DispensedDateTime, RecordNumber",
+          OrderBy: "Machine"
+        };
+
+        const businessContacts = await FamarkCloud.postData(
+          "/FuelDispenser_Dispenser/RetrieveMultipleRecords",
+          JSON.stringify(retrieveMultipleQuery),
+          sessionId
+        );
+
+        res.render('admin/vehicle/detailStats', { Title: "Vehicle list", user, businessContacts, options,  options2 , error: "Vehicle Stats List" })
+
+      } catch (err) {
+          console.log(err);
+          res.status(500).send('Internal Server Error');
+      }
     },
 };
 

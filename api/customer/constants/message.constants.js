@@ -165,6 +165,9 @@ module.exports = Object.freeze({
     EMP_ID_ALREADY_REGISTERED: 'Employee id is already registered',
 
 
+    DELIVERY_FEES_NOT_PRESENT: 'Delivery Fees does not Exist',
+    DELIVERY_FEES_FETCHED_SUCCESSFULLY: 'Delivery Fees fetched successfully',
+
     ORDER_NOT_PRESENT: 'Order does not Exist',
     ORDER_FETCHED_SUCCESSFULLY: 'Order fetched successfully',
     ORDER_ALREADY_REGISTERED: 'Order is already placed',

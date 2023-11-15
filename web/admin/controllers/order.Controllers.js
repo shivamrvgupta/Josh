@@ -1,20 +1,15 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const {NumberHelper} = require('../../../managers/helpers')
 const { v4: uuidv4 } = require('uuid');
 const {
   MessageConstants,
   StatusCodesConstants,
-  ParamsConstants,
-  
+  NotificationConstants,
 } = require('../../../managers/notify');
-const secretKey = process.env.SECRET_KEY
-const {
-  ImgServices
-} = require('../../../managers/services');
 const { generateAccessToken} = require('../middlewares/auth.middleware');
 const models = require('../../../managers/models');
-
-const { Notifier } = require('../../../managers/notifications')
+const {PushNotification } = require('../../../managers/notifications')
 // This would be your token blacklist storage
 const tokenBlacklist = new Set();
 const options = { day: '2-digit', month: 'short', year: 'numeric' };
@@ -208,16 +203,15 @@ module.exports = {
         // Define flags for is_delivered and is_cancelled
         let isDelivered = false;
         let isCancelled = false;
-    
+
+        const updatedOrder = await models.BranchModel.Order.findOne({order_id:orderId});    
+
         // Update flags based on newStatus
         if (newStatus === 'Delivered') {
           isDelivered = true;
         } else if (newStatus === 'Cancelled') {
           isCancelled = true;
         }
-
-        
-        const updatedOrder = await models.BranchModel.Order.findOne({order_id:orderId});
 
         console.log(updatedOrder);
         // Update the order using async/await
@@ -227,13 +221,21 @@ module.exports = {
     
         await updatedOrder.save();
 
-        const userId = updatedOrder.user_id
-        const message = `Order ${updatedOrder.order_id} is ${updatedOrder.status} by Team`
-        console.log(typeof Notifier.sendPushNotification);  // Should print 'function'
+        const order_id = updatedOrder.order_id;
+        const userId = updatedOrder.user_id;
 
-        const Notification = await Notifier.sendPushNotification(userId, message);
-
-        console.log(Notification)
+        if (updatedOrder.is_delivered === true) {
+          const message = NotificationConstants.OrderDelivered(order_id) 
+          const Notification = await PushNotification.sendPushNotification(userId, message);
+        }
+        
+        if (updatedOrder.is_cancelled === true) {
+          const message = NotificationConstants.OrderCancelled(order_id) 
+          const Notification = await PushNotification.sendPushNotification(userId, message);
+        }
+        
+        const message = NotificationConstants.OrderStatus(order_id, newStatus) 
+        const Notification = await PushNotification.sendPushNotification(userId, message);
 
         if (!updatedOrder) {
           return res.status(404).json({ message: 'Order not found' });
@@ -321,6 +323,10 @@ module.exports = {
       try {
         const orderId = req.params.id;
         const order = await models.BranchModel.Order.findById(orderId).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');
+        const bank = await models.BranchModel.Bank.findOne({user_id : order.branch_id});
+        console.log(bank)
+        const vehicle = await models.BranchModel.Vehicle.findOne({deliveryman_id: order.delivery_id})
+        const totalPriceInWords = NumberHelper.convertNumberToWords(order.total_price);
         const deliveryman = await models.UserModel.DeliveryMan.find();
         const user = req.user;
         if (!user) {
@@ -330,11 +336,11 @@ module.exports = {
           const custom_css = "Out_For_Delivery";
 
           const error =  `Order ${order.order_id} Details`
-          res.render('partials/invoice', { user,order, custom_css, options , error, deliveryman});
+          res.render('partials/invoice', { user,order, custom_css, options, bank, vehicle , totalPriceInWords,error, deliveryman});
         }
         const custom_css = order.status;
         const error =  `Order ${order.order_id} Details`
-        res.render('partials/invoice', { user,order, custom_css, options , error, deliveryman});
+        res.render('partials/invoice', { user,order, custom_css, options, bank, vehicle , totalPriceInWords,error, deliveryman});
       } catch (err) {
         console.log(err);
         res.status(StatusCodesConstants.INTERNAL_SERVER_ERROR).send(MessageConstants.INTERNAL_SERVER_ERROR);

@@ -7,6 +7,9 @@ const minify = require('html-minifier').minify;
 const pdf = require('html-pdf');  
 const ejs = require('ejs');
 const path = require("path"); 
+const { PushNotification } = require("../../../managers/notifications");
+const { NotificationConstants } = require("../../../managers/notify");
+const { NumberHelper } = require("../../../managers/helpers");
 const { promisify } = require('util');  
 const options = { day: '2-digit', month: 'short', year: 'numeric' };
 const options2 = { timeZone: 'UTC', };
@@ -424,17 +427,6 @@ module.exports = {
                     const newOrder = new models.BranchModel.Order(orderItem);
                     await newOrder.save();
 
-                    const order = await models.BranchModel.Order.findOne({order_id: orderItem.order_id}).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');
-
-                    const recipientEmail = user.email;
-                    const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
-                    const templateFilePath = path.join(__dirname, Mailer.invoiceEmail);
-
-                    // Read the email template file
-                    const emailTemplateContent = await promisify(fs.readFile)(templateFilePath, 'utf8');
-                    
-                    const renderedEmailContent = ejs.render(emailTemplateContent, { order , user, options });
-
                     // const format = { format: 'A4' };
                     
                     // const phantom = phantomjs
@@ -516,6 +508,31 @@ module.exports = {
 
                     console.log("trouble --3 ")
 
+
+                    // const pdfGeneration = await generatePdf(minifiedHtml, format);
+
+
+                    const message = NotificationConstants.OrderPlaced(orderItem.order_id)
+
+                    PushNotification.sendPushNotification(user_id, message)
+
+                    const order = await models.BranchModel.Order.findOne({order_id: orderItem.order_id}).populate('product_items').populate('branch_id').populate('address_id').populate('user_id').populate('product_items.product_id').populate('delivery_id');
+                    const bank = await models.BranchModel.Bank.findOne({user_id : order.branch_id});
+                    console.log(bank)
+                    const vehicle = await models.BranchModel.Vehicle.findOne({deliveryman_id: order.delivery_id})
+                    const totalPriceInWords = NumberHelper.convertNumberToWords(order.total_price);
+
+                    
+
+                    const recipientEmail = "shivamrvgupta@gmail.com";
+                    const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
+                    const templateFilePath = path.join(__dirname, Mailer.invoiceEmail);
+
+                    // Read the email template file
+                    const emailTemplateContent = await promisify(fs.readFile)(templateFilePath, 'utf8');
+                    
+                    const renderedEmailContent = ejs.render(emailTemplateContent, { order , user, options, bank , vehicle, totalPriceInWords });
+
                     const minifiedHtml = minify(renderedEmailContent, {
                         removeAttributeQuotes: true,
                         collapseWhitespace: true,
@@ -523,10 +540,6 @@ module.exports = {
                         minifyCSS: true
                     });
 
-                    // const pdfGeneration = await generatePdf(minifiedHtml, format);
-
-
-                    const invoicePdf = `${orderItem.order_id}-invoice.pdf`
                     // Send the email and wait for it to complete
                     const emailResult = await Mailer.sendCustomMail(recipientEmail, subject, renderedEmailContent );
 
@@ -718,7 +731,11 @@ module.exports = {
                 
                     // Save the updated order
                     await order.save();
-                
+                    
+                    const message = NotificationConstants.OrderCancelled(order.order_id);
+
+                    PushNotification.sendPushNotification(user_id, message)
+
                     console.log(`Order ${orderId} has been canceled by ${session.first_name, session.last_name}.`);
                 
                     return res.status(StatusCodesConstants.SUCCESS).json({

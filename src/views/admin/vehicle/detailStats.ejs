@@ -20,7 +20,6 @@
                             <div class="card o-hidden">
                                 <div class="card-header border-0 pb-1">
                                     <div class="card-header-title">
-                                        <h4><%= vehicleStats[0].vehicle.vehicle_number %></h4>
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
@@ -47,22 +46,24 @@
                                             <table class="user-table list-table table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Order Id</th>
-                                                        <th>fuel_dispensed</th>
-                                                        <th>fuel_available</th>
-                                                        <th>fuel_capacity</th>
-                                                        <th>dispensed_datetime</th>
+                                                        <th>Sr. No</th>
+                                                        <th>Machine</th>
+                                                        <th>Rate</th>
+                                                        <th>Volume</th>
+                                                        <th>Amount</th>
+                                                        <th>Date Time</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <% if (vehicleStats != '') { %>        
-                                                        <% vehicleStats.forEach((row, index) => { %> 
+                                                    <% if (businessContacts != '') { %>        
+                                                        <% businessContacts.forEach((row, index) => { %> 
                                                             <tr>
-                                                                <td><%= row.order_id.order_id %></td>
-                                                                <td><%= row.fuel_dispensed %></td>
-                                                                <td><%= row.fuel_available %></td>
-                                                                <td><%= row.fuel_capacity %></td>
-                                                                <td><%= row.dispensed_datetime.toLocaleDateString('en-UK', options) %> <%= row.dispensed_datetime.toLocaleTimeString('en-UK', options2) %></td>
+                                                                <td><%= index+1 %></td>
+                                                                <td><%= row.Machine %></td>
+                                                                <td><%= row.Rate %></td>
+                                                                <td><%= row.Volume %></td>
+                                                                <td><%= row.Amount %></td>
+                                                                <td><%= row.DispensedDateTime %></td>
 
                                                             </tr>
                                                         <% }) %>      

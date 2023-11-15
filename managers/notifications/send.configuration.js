@@ -4,69 +4,53 @@ var FCM = require('fcm-node');
 const models = require('../models')
 
 module.exports = {  
-  sendPushNotification : async(userId, message) => {
+  sendPushNotification: async (userIds, message) => {
     try {
-      console.log('User Id:- '+userId);
-      console.log('message:- '+message);
+        console.log('User Ids:- ', userIds);
+        console.log('Message:- ', message);
 
-      fs.readFile(path.join(__dirname,'./FireBaseConfig.json'), "utf8", async(err, jsonString) => {
-      if (err) {
-          console.log("Error reading file from disk:", err);
-          return err;
-        }
-        try {
+        // Read Firebase configuration from the JSON file
+        const jsonString = fs.readFileSync(path.join(__dirname, './FireBaseConfig.json'), 'utf8');
+        const data = JSON.parse(jsonString);
+        const serverKey = data.SERVER_KEY;
+        const fcm = new FCM(serverKey);
 
-          //firebase push notification send
-          const data = JSON.parse(jsonString);
-          var serverKey = data.SERVER_KEY;
-          var fcm = new FCM(serverKey);
+        // Retrieve FCM tokens for the specified user IDs
+        const pushTokens = await models.UserModel.Device.find({ user_id: { $in: userIds } });
+        console.log(pushTokens)
+        const regIds = pushTokens.map(token => token.fcm_token);
 
-          console.log(serverKey)
-          console.log(fcm)
+        console.log('Registration IDs:', regIds);
 
-          var push_tokens = await models.UserModel.Device.find({user_id: userId});
-          console.log(push_tokens)
-          var reg_ids = [];
-          console.log(reg_ids)
-          push_tokens.forEach(token => {
-            reg_ids.push(token.fcm_token)
-          })
-
-          console.log(reg_ids)
-
-          if(reg_ids.length > 0){
-            var pushMessage = { //this may vary according to the message type (single recipient, multicast, topic, et cetera)
-              registration_ids:reg_ids,
-              content_available: true,
-              mutable_content: true,
-              notification: {
-                  body: message,
-                  icon : 'myicon',//Default Icon
-              },
+        if (regIds.length > 0) {
+            const pushMessage = {
+                registration_ids: regIds,
+                content_available: true,
+                mutable_content: true,
+                notification: {
+                    body: message,
+                    icon: 'myicon', // Default Icon
+                },
             };
-            console.log("Message --- ",pushMessage)
-            fcm.send(pushMessage, function(err, response){
-                console.log("Message --- I am hrere")
+
+            console.log("Message --- ", pushMessage);
+
+            // Send the push notification
+            fcm.send(pushMessage, function (err, response) {
+                console.log("Message --- I am here");
                 if (err) {
-                    console.log("Something has gone wrong!",err);
+                    console.log("Something has gone wrong!", err);
                 } else {
                     console.log("Push notification sent.", response);
                 }
             });
-
-          }
-
-
-        } catch (err) {
-          console.log("Error parsing JSON string:", err);
         }
-      });
 
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
+},
 
-  },
 }
 
 
