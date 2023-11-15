@@ -249,23 +249,23 @@ module.exports = {
     },
 
   // Detailed Stats
-    detailedStats :async (req, res) => {
-    try {
-        const vehicleId = req.params.vehicleId;
-        const vehicleStats = await models.BranchModel.VehicleStats.find({vehicle : vehicleId})
-            .populate('vehicle')
-            .populate('order_id')
+    // detailedStats :async (req, res) => {
+    // try {
+    //     const vehicleId = req.params.vehicleId;
+    //     const vehicleStats = await models.BranchModel.VehicleStats.find({vehicle : vehicleId})
+    //         .populate('vehicle')
+    //         .populate('order_id')
 
-        const user = req.user;
-        if (!user) {
-            return res.redirect('/admin/auth/login');
-        }
-        res.render('admin/vehicle/detailStats', { Title: "Vehicle list", user, vehicleStats, options,  options2 , error: "DeliveryMan List" })
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Internal Server Error');
-    }
-    },
+    //     const user = req.user;
+    //     if (!user) {
+    //         return res.redirect('/admin/auth/login');
+    //     }
+    //     res.render('admin/vehicle/detailStats', { Title: "Vehicle list", user, vehicleStats, options,  options2 , error: "DeliveryMan List" })
+    // } catch (err) {
+    //     console.log(err);
+    //     res.status(500).send('Internal Server Error');
+    // }
+    // },
     
     getStats :async (req, res) => {
       try {
@@ -288,7 +288,7 @@ module.exports = {
         //Retrieving Business_Contact records
         const retrieveMultipleQuery = {
           Columns: "Machine, Rate, Amount, Volume, DispensedDateTime, RecordNumber",
-          OrderBy: "Machine"
+          OrderBy: "DispensedDateTime desc"
         };
 
         const businessContacts = await FamarkCloud.postData(

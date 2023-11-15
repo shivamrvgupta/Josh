@@ -84,7 +84,7 @@ module.exports = {
           status: true,
           status_code: StatusCodesConstants.SUCCESS,
           message: MessageConstants.BRANCH_NOT_IN_AREA,
-          data : []
+          data : {}
          });
       }
 
@@ -156,7 +156,7 @@ module.exports = {
           status: true,
           status_code: StatusCodesConstants.SUCCESS,
           message: MessageConstants.BRANCH_NOT_IN_AREA,
-          data : []
+          data : {}
          });
       }
 
