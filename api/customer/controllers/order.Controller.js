@@ -524,7 +524,7 @@ module.exports = {
 
                     
 
-                    const recipientEmail = "shivamrvgupta@gmail.com";
+                    const recipientEmail = userData.email;
                     const subject = `Order #${orderItem.order_id} confirmed | Thank you for placing your order!`;
                     const templateFilePath = path.join(__dirname, Mailer.invoiceEmail);
 
