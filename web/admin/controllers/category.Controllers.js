@@ -7,6 +7,7 @@ const {
   ParamsConstants,
   
 } = require('../../../managers/notify');
+const { ConfigureBucket } = require('../../../managers/aws-s3');
 const secretKey = process.env.SECRET_KEY
 const {
   ImgServices
@@ -73,10 +74,13 @@ module.exports = {
     
         const newCategory = new models.ProductModel.Category(categoryData);
         await newCategory.save();
+        console.log(imageFilename)
+        const upload = await ConfigureBucket.savetobucket(imageFilename);
     
+        console.log(upload)
         console.log("Category Added successfully");
         res.redirect('/admin/category/all');
-        res.render('admin/categories/add', { Title: "Add new Category", user, route: finalRoute.baseUrL, error: "Add New Category" });
+        res.render('admin/categories/add', { Title: "Add new Category", user, error: "Add New Category" });
       } catch (err) {
         console.log(err);
         res.status(500).send('Internal Server Error');
